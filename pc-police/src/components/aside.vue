@@ -8,20 +8,16 @@
     @open="handleOpen"
     @close="handleClose"
   >
-  <div>
-    <img src="@/assets/logo.png" alt="" >
-  </div>
+    <div>
+      <img src="@/assets/logo.png" alt="" />
+    </div>
     <el-menu-item index="1">
-      <el-icon><icon-menu /></el-icon>
-      <span>Navigator Two</span>
+      <el-icon><odometer /></el-icon>
+      <span>仪表盘</span>
     </el-menu-item>
-    <el-menu-item index="2">
+    <el-menu-item index="2" @click="goclue">
       <el-icon><document /></el-icon>
-      <span>Navigator Three</span>
-    </el-menu-item>
-    <el-menu-item index="3">
-      <el-icon><setting /></el-icon>
-      <span>Navigator Four</span>
+      <span>线索管理</span>
     </el-menu-item>
   </el-menu>
 </template>
@@ -33,29 +29,41 @@ export default {
 </script>
 
 <script setup>
-import {Document} from '@element-plus/icons-vue'
+import { Document } from '@element-plus/icons-vue'
+import { Odometer } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
+
 const handleOpen = (key, keyPath) => {
   console.log(key, keyPath)
 }
 const handleClose = (key, keyPath) => {
   console.log(key, keyPath)
 }
+
+const router = useRouter()
+const goclue = () => {
+  router.push('/clue')
+}
 </script>
 <!-- #4D70FF -->
 <style lang="scss" scoped>
 .el-menu {
+  .is-active {
+    background-color: #4d70ff;
+    color: white;
+  }
   height: 100%;
-  >div{
-    img{
+  > div {
+    img {
       width: 100%;
     }
   }
-  .el-menu-item{
-    margin: 0 20px;
+  .el-menu-item {
+    margin: 0 20px 10px;
     height: 56px;
     border-radius: 5px;
-    &:hover{
-      background-color: #4D70FF;
+    &:hover {
+      background-color: #4d70ff;
     }
   }
 }
