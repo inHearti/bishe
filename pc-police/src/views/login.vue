@@ -15,7 +15,7 @@
         >
           <el-form-item prop="username">
             <el-input
-              v-model="loginFormData.username"
+              v-model="loginFormData.phone"
               size="large"
               placeholder="请输入用户名"
               :suffix-icon="User"
@@ -66,16 +66,18 @@ import { User } from '@element-plus/icons-vue'
 import { Lock } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { userAccountLogin } from '@/api/user'
+
 // 验证函数
 const checkUsername = (rule, value, callback) => {
-  if (value.length < 5) {
+  if (value.length < 2) {
     return callback(new Error('请输入正确的用户名'))
   } else {
     callback()
   }
 }
 const checkPassword = (rule, value, callback) => {
-  if (value.length < 6) {
+  if (value.length < 2) {
     return callback(new Error('请输入正确的密码'))
   } else {
     callback()
@@ -83,20 +85,30 @@ const checkPassword = (rule, value, callback) => {
 }
 
 const router = useRouter()
-const login = () => {
-  router.push('/home')
-}
+
 // 登录相关操作
 const loginForm = ref(null)
 const picPath = ref('')
 const loginFormData = reactive({
-  username: 'admin',
-  password: '123456',
+  phone: '',
+  password: '',
 })
 const rules = reactive({
-  username: [{ validator: checkUsername, trigger: 'blur' }],
+  phone: [{ validator: checkUsername, trigger: 'blur' }],
   password: [{ validator: checkPassword, trigger: 'blur' }],
 })
+
+const login = () => {
+  userAccountLogin(loginFormData)
+    .then((res) => {
+      if (res.data.status == 200) {
+        router.push('/home')
+      }
+    })
+    .catch((e) => {
+      ElMessage.error('用户名或密码错误！')
+    })
+}
 </script>
 <style lang="scss" scoped>
 @import '@/style/newLogin.scss';

@@ -1,75 +1,40 @@
 <template>
-  <div class="xtx-cart-page">
+  <div class="clue-page">
     <div class="container">
       <div class="cart">
         <table>
           <thead>
             <tr>
-              <th width="400">商品信息</th>
-              <th width="220">单价</th>
-              <th width="180">数量</th>
-              <th width="180">小计</th>
+              <th width="50">ID</th>
+              <th width="400">线索描述</th>
+              <th width="220">时间</th>
+              <th width="180">地点</th>
               <th width="140">操作</th>
             </tr>
           </thead>
           <!-- 有效商品 -->
           <tbody>
-            <tr v-for="i in 3" :key="i">
+            <tr v-for="i in 1" :key="i">
+              <td>1</td>
               <td>
                 <div class="goods">
-                  <RouterLink to="/"
-                    ><img
-                      src="https://yanxuan-item.nosdn.127.net/13ab302f8f2c954d873f03be36f8fb03.png"
-                      alt=""
-                  /></RouterLink>
+                  <img
+                    src="https://yanxuan-item.nosdn.127.net/13ab302f8f2c954d873f03be36f8fb03.png"
+                    alt=""
+                  />
                   <div>
                     <p class="name ellipsis">
                       和手足干裂说拜拜 ingrams手足皲裂修复霜
                     </p>
-                    <!-- 选择规格组件 -->
                   </div>
                 </div>
               </td>
               <td class="tc">
-                <p>&yen;200.00</p>
-                <p>比加入时降价 <span class="red">&yen;20.00</span></p>
+                <p>2023-2-20 10:11</p>
               </td>
-              <td class="tc"></td>
-              <td class="tc"><p class="f16 red">&yen;200.00</p></td>
+              <td class="tc">天津市武清区</td>
               <td class="tc">
-                <p><a href="javascript:;">移入收藏夹</a></p>
-                <p><a class="green" href="javascript:;">删除</a></p>
-                <p><a href="javascript:;">找相似</a></p>
-              </td>
-            </tr>
-          </tbody>
-          <!-- 无效商品 -->
-          <tbody>
-            <tr>
-              <td colspan="6"><h3 class="tit">失效商品</h3></td>
-            </tr>
-            <tr v-for="i in 3" :key="i">
-              <td>
-                <div class="goods">
-                  <RouterLink to="/"
-                    ><img
-                      src="https://yanxuan-item.nosdn.127.net/13ab302f8f2c954d873f03be36f8fb03.png"
-                      alt=""
-                  /></RouterLink>
-                  <div>
-                    <p class="name ellipsis">
-                      和手足干裂说拜拜 ingrams手足皲裂修复霜
-                    </p>
-                    <p class="attr">颜色：粉色 尺寸：14cm 产地：中国</p>
-                  </div>
-                </div>
-              </td>
-              <td class="tc"><p>&yen;200.00</p></td>
-              <td class="tc">1</td>
-              <td class="tc"><p>&yen;200.00</p></td>
-              <td class="tc">
-                <p><a class="green" href="javascript:;">删除</a></p>
-                <p><a href="javascript:;">找相似</a></p>
+                <p><a class="green" href="javascript:;">反馈</a></p>
               </td>
             </tr>
           </tbody>
@@ -86,10 +51,6 @@ export default {
 <style scoped lang="scss">
 .tc {
   text-align: center;
-  .xtx-numbox {
-    margin: 0 auto;
-    width: 120px;
-  }
 }
 .red {
   color: red;
@@ -124,7 +85,7 @@ export default {
   font-weight: normal;
   line-height: 50px;
 }
-.xtx-cart-page {
+.clue-page {
   .cart {
     background: #fff;
     color: #666;

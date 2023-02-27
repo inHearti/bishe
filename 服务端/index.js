@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 app.use(cors())
 app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 
 // 一定要在路由之前，封装 res.cc 函数
@@ -12,7 +13,7 @@ app.use((req, res, next) => {
     res.cc = function (err, status = 1) {
         res.send({
             status,
-            message: err instanceof Error ? err.message : err,
+            result: err instanceof Error ? err.message : err,
         })
     }
     next()
@@ -21,7 +22,7 @@ app.use((req, res, next) => {
 
 
 const userrouter = require('./router/user')
-app.use('/api', userrouter)
+app.use('/user', userrouter)
 
 const cluerouter = require('./router/clue')
 app.use('/clue', cluerouter)
@@ -33,6 +34,7 @@ const remindrouter = require('./router/remind')
 app.use('/remind', remindrouter)
 
 const lostrouter = require('./router/lost')
+const { json } = require('express')
 app.use('/lost', lostrouter)
 
 

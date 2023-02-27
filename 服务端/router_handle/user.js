@@ -19,7 +19,6 @@ exports.register = (req, res) => {
     })
     const sqlStr1 = 'INSERT INTO police_users SET ?'
     db.query(sqlStr1, userinfo, (err, results) => {
-        console.log(userinfo);
         if (err) {
             return res.cc(err.message)
         }
@@ -41,6 +40,6 @@ exports.login = (req, res) => {
         if (err) return res.cc(err)
         if (results.length !== 1) return res.cc('用户名错误！')
         if (userinfo.password == results[0].password)
-            res.cc('登录成功', 200)
+            res.cc(results[0], 200)
     })
 }
