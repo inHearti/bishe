@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import login from '../views/login.vue'
 import home from '../views/home.vue'
-import clue from '@/components/clue.vue'
+import cluetrue from '@/components/cluetrue.vue'
+import cluefalse from '@/components/cluefalse.vue'
 
 const routes = [
   {
@@ -14,9 +15,14 @@ const routes = [
     name: 'home',
     component: home,
     children: [{
-      path: '/clue',
-      name: 'clue',
-      component: clue,
+      path: '/cluetrue',
+      name: 'cluetrue',
+      component: cluetrue,
+    },
+    {
+      path: '/cluefalse',
+      name: 'cluefalse',
+      component: cluefalse,
     }]
   },
 ]

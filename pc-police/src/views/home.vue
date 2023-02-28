@@ -26,6 +26,9 @@
     .el-header {
       padding: 0;
     }
+    .el-main{
+      height: 895px;
+    }
   }
 }
 </style>

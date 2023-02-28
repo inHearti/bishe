@@ -1,7 +1,7 @@
 <template>
   <div class="clue-page">
     <div class="container">
-      <div class="cart">
+      <div class="clue">
         <table>
           <thead>
             <tr>
@@ -9,13 +9,13 @@
               <th width="400">线索描述</th>
               <th width="220">时间</th>
               <th width="180">地点</th>
-              <th width="140">操作</th>
+              <th width="140">反馈信息</th>
             </tr>
           </thead>
           <!-- 有效商品 -->
           <tbody>
-            <tr v-for="i in 1" :key="i">
-              <td>1</td>
+            <tr v-for="i in clues1" :key="i">
+              <td>{{i.id}}</td>
               <td>
                 <div class="goods">
                   <img
@@ -24,31 +24,82 @@
                   />
                   <div>
                     <p class="name ellipsis">
-                      和手足干裂说拜拜 ingrams手足皲裂修复霜
+                      {{i.message}}
                     </p>
                   </div>
                 </div>
               </td>
               <td class="tc">
-                <p>2023-2-20 10:11</p>
+                <p>{{i.time}}</p>
               </td>
-              <td class="tc">天津市武清区</td>
+              <td class="tc">{{i.place}}</td>
               <td class="tc">
-                <p><a class="green" href="javascript:;">反馈</a></p>
+                {{i.feedback}}
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+    <el-pagination
+      v-model:current-page="currentPage"
+      v-model:page-size="pageSize"
+      :small="small"
+      :disabled="disabled"
+      :background="background"
+      layout="prev, pager, next, jumper"
+      :total="clues.length"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
   </div>
 </template>
+
 <script>
 export default {
-  name: 'clue',
+  name: 'cluetrue',
 }
 </script>
+
+<script setup>
+import { getclue } from '@/api/clue';
+import { computed, ref } from 'vue';
+
+const currentPage = ref(1)
+const pageSize = ref(6)
+
+const clues = ref([])
+
+getclue().then(res=>{
+  const arr = []
+   res.data.result.forEach(item => {
+    if(item.status == 1){
+      arr.push(item)
+    }
+   });
+   clues.value = arr
+}).catch(e=>{
+
+})
+
+const clues1 = computed(()=>{
+  return clues.value.slice((currentPage.value-1)*6,currentPage.value*6)
+})
+console.log(clues1);
+const handleSizeChange = (val) => {
+  console.log(`${val} items per page`)
+}
+const handleCurrentChange = (val) => {
+  console.log(`current page: ${val}`)
+}
+</script>
+
 <style scoped lang="scss">
+.el-pagination{
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+}
 .tc {
   text-align: center;
 }
@@ -86,7 +137,10 @@ export default {
   line-height: 50px;
 }
 .clue-page {
-  .cart {
+  position: relative;
+  height: 100%;
+  background-color: white;
+  .clue {
     background: #fff;
     color: #666;
     table {

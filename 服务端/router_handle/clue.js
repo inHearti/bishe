@@ -14,7 +14,7 @@ exports.getclue = (req, res) => {
 //反馈线索
 exports.feedbackclue = (req, res) => {
     const clueinfo = req.body
-    const sqlStr = 'UPDATE clue set feedback = ? WHERE id = ?'
+    const sqlStr = 'UPDATE clue set feedback = concat(feedback , ?),status = 1  WHERE id = ?'
     db.query(sqlStr, [clueinfo.feedback, clueinfo.id], (err, results) => {
         if (err) {
             //执行sql语句失败

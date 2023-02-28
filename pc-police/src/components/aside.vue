@@ -21,11 +21,11 @@
         <span>线索管理</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="2-1" @click="goclue">
+        <el-menu-item index="2-1" @click="gocluefalse">
           <el-icon><QuestionFilled /></el-icon>
           <span>待处理线索</span></el-menu-item
         >
-        <el-menu-item index="2-2">
+        <el-menu-item index="2-2" @click="gocluetrue">
           <el-icon><SuccessFilled /></el-icon>
           <span>已处理线索</span>
         </el-menu-item>
@@ -55,8 +55,11 @@ const handleClose = (key, keyPath) => {
 }
 
 const router = useRouter()
-const goclue = () => {
-  router.push('/clue')
+const gocluefalse = () => {
+  router.push('/cluefalse')
+}
+const gocluetrue = () => {
+  router.push('/cluetrue')
 }
 </script>
 <!-- #4D70FF -->
