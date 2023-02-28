@@ -6,7 +6,6 @@ exports.circulate = (req, res) => {
     const sqlStr = 'INSERT INTO police_case SET ?'
     db.query(sqlStr, caseinfo, (err, results) => {
         if (err) {
-            console.log(caseinfo);
             return res.cc(err.message)
         }
         if (results.affectedRows !== 1) {
