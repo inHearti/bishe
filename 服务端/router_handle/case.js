@@ -11,7 +11,6 @@ exports.circulate = (req, res) => {
         if (results.affectedRows !== 1) {
             return res.cc('通报失败！')
         }
-
         res.cc('通报成功', 200)
     })
 

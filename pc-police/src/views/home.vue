@@ -28,6 +28,9 @@
     }
     .el-main{
       height: 895px;
+      padding: 0;
+      margin: 20px;
+      background-color: #fff;
     }
   }
 }

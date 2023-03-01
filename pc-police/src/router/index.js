@@ -3,6 +3,7 @@ import login from '../views/login.vue'
 import home from '../views/home.vue'
 import cluetrue from '@/components/cluetrue.vue'
 import cluefalse from '@/components/cluefalse.vue'
+import policeCase from '@/components/policeCase.vue'
 
 const routes = [
   {
@@ -23,6 +24,11 @@ const routes = [
       path: '/cluefalse',
       name: 'cluefalse',
       component: cluefalse,
+    },
+    {
+      path: '/policeCase',
+      name: 'policeCase',
+      component: policeCase,
     }]
   },
 ]

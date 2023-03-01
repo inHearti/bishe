@@ -37,7 +37,7 @@
         <span>通知管理</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="3-1" >
+        <el-menu-item index="3-1" @click="gopoliceCase">
           <el-icon><Promotion /></el-icon>
           <span>警情通报</span></el-menu-item
         >
@@ -79,6 +79,9 @@ const gocluefalse = () => {
 }
 const gocluetrue = () => {
   router.push('/cluetrue')
+}
+const gopoliceCase = ()=>{
+  router.push('/policeCase')
 }
 </script>
 <!-- #4D70FF -->
