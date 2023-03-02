@@ -48,6 +48,10 @@
       </el-menu-item-group>
     </el-sub-menu>
     <el-menu-item index="4">
+      <el-icon><Present /></el-icon>
+      <span>失物招领</span>
+    </el-menu-item>
+    <el-menu-item index="5">
       <el-icon><Coin /></el-icon>
       <span>积分</span>
     </el-menu-item>
@@ -68,6 +72,7 @@ import { QuestionFilled } from '@element-plus/icons-vue'
 import { Microphone } from '@element-plus/icons-vue'
 import { Promotion } from '@element-plus/icons-vue'
 import { Coin } from '@element-plus/icons-vue'
+import { Present } from '@element-plus/icons-vue'
 
 import { useRouter } from 'vue-router'
 
