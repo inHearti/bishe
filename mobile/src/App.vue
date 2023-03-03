@@ -11,13 +11,16 @@ export default {
 </script>
 
 <style>
+
 body{
   min-height: 100vh;
 }
+
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
