@@ -9,7 +9,7 @@
     @close="handleClose"
   >
     <div>
-      <img src="@/assets/logo.png" alt="" />
+      <h2>平安武清</h2>
     </div>
     <el-menu-item index="1">
       <el-icon><odometer /></el-icon>
@@ -20,7 +20,7 @@
         <el-icon><document /></el-icon>
         <span>线索管理</span>
       </template>
-      <el-menu-item-group >
+      <el-menu-item-group>
         <el-menu-item index="2-1" @click="gocluefalse">
           <el-icon><QuestionFilled /></el-icon>
           <span>待处理线索</span></el-menu-item
@@ -48,12 +48,16 @@
       </el-menu-item-group>
     </el-sub-menu>
     <el-menu-item index="4">
+      <el-icon><document /></el-icon>
+      <span>案件总览</span>
+    </el-menu-item>
+    <el-menu-item index="5">
       <el-icon><Present /></el-icon>
       <span>失物招领</span>
     </el-menu-item>
-    <el-menu-item index="5">
+    <el-menu-item index="6">
       <el-icon><Coin /></el-icon>
-      <span>积分</span>
+      <span>积分管理</span>
     </el-menu-item>
   </el-menu>
 </template>
@@ -76,8 +80,6 @@ import { Present } from '@element-plus/icons-vue'
 
 import { useRouter } from 'vue-router'
 
-
-
 const router = useRouter()
 const gocluefalse = () => {
   router.push('/cluefalse')
@@ -85,12 +87,18 @@ const gocluefalse = () => {
 const gocluetrue = () => {
   router.push('/cluetrue')
 }
-const gopoliceCase = ()=>{
+const gopoliceCase = () => {
   router.push('/policeCase')
 }
 </script>
 <!-- #4D70FF -->
 <style lang="scss" scoped>
+h2 {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+}
 .el-menu {
   .is-active {
     background-color: #4d70ff;
@@ -112,9 +120,6 @@ const gopoliceCase = ()=>{
   .el-sub-menu {
     margin: 0 10px 10px;
     border-radius: 5px;
-    &:hover {
-      // opacity: 0.8;
-    }
   }
 }
 </style>

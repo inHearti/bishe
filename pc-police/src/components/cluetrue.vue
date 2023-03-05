@@ -1,58 +1,49 @@
 <template>
-  <div class="clue-page">
-    <div class="container">
-      <div class="clue">
-        <table>
-          <thead>
-            <tr>
-              <th width="50">ID</th>
-              <th width="400">线索描述</th>
-              <th width="220">时间</th>
-              <th width="180">地点</th>
-              <th width="140">反馈信息</th>
-            </tr>
-          </thead>
-          <!-- 有效商品 -->
-          <tbody>
-            <tr v-for="i in clues1" :key="i">
-              <td>{{i.id}}</td>
-              <td>
-                <div class="goods">
-                  <img
-                    src="https://yanxuan-item.nosdn.127.net/13ab302f8f2c954d873f03be36f8fb03.png"
-                    alt=""
-                  />
-                  <div>
-                    <p class="name ellipsis">
-                      {{i.message}}
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td class="tc">
-                <p>{{i.time}}</p>
-              </td>
-              <td class="tc">{{i.place}}</td>
-              <td class="tc">
-                {{i.feedback}}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <el-pagination
-      v-model:current-page="currentPage"
-      v-model:page-size="pageSize"
-      :small="small"
-      :disabled="disabled"
-      :background="background"
-      layout="prev, pager, next, jumper"
-      :total="clues.length"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-    />
+  <div>
+    <el-form
+      :inline="true"
+      :model="formInline"
+      class="demo-form-inline"
+      :label-position="labelPosition"
+    >
+      <el-form-item label="ID">
+        <el-input v-model="formInline.id" placeholder="请输入查询ID" />
+      </el-form-item>
+      <el-form-item label="地点">
+        <el-input v-model="formInline.place" placeholder="请输入地点" />
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">查询</el-button>
+      </el-form-item>
+    </el-form>
   </div>
+
+  <el-table :data="clues" style="width: 100%">
+    <el-table-column prop="id" label="线索ID" width="80" />
+    <el-table-column prop="handle_time" label="处理时间" width="180" />
+    <el-table-column prop="handle_place" label="处理地点" />
+    <el-table-column prop="police" label="处理人ID" width="180" />
+    <el-table-column prop="people" label="举报人手机号" />
+    <el-table-column fixed="right" label="操作" width="180">
+      <template #default>
+        <el-button link type="primary" size="small" @click="handleClick"
+          >详细信息</el-button
+        >
+      </template>
+    </el-table-column>
+  </el-table>
+
+  <el-pagination
+    v-model:current-page="currentPage"
+    v-model:page-size="pageSize"
+    :small="small"
+    :disabled="disabled"
+    :background="background"
+    layout="prev, pager, next, jumper"
+    :total="clues.length"
+    @size-change="handleSizeChange"
+    @current-change="handleCurrentChange"
+  />
 </template>
 
 <script>
@@ -62,30 +53,37 @@ export default {
 </script>
 
 <script setup>
-import { getclue } from '@/api/clue';
-import { computed, ref } from 'vue';
+import { getclue } from '@/api/clue'
+import { computed, ref, reactive } from 'vue'
+
+const labelPosition = ref('left')
+//查询参数
+const formInline = reactive({
+  id: '',
+  place: '',
+})
 
 const currentPage = ref(1)
 const pageSize = ref(6)
 
 const clues = ref([])
 
-getclue().then(res=>{
-  const arr = []
-   res.data.result.forEach(item => {
-    if(item.status == 1){
-      arr.push(item)
-    }
-   });
-   clues.value = arr
-}).catch(e=>{
+getclue()
+  .then((res) => {
+    const arr = []
+    res.data.result.forEach((item) => {
+      if (item.status == 1) {
+        arr.push(item)
+      }
+    })
+    clues.value = arr
+  })
+  .catch((e) => {})
 
+const clues1 = computed(() => {
+  return clues.value.slice((currentPage.value - 1) * 6, currentPage.value * 6)
 })
-
-const clues1 = computed(()=>{
-  return clues.value.slice((currentPage.value-1)*6,currentPage.value*6)
-})
-console.log(clues1);
+console.log(clues1)
 const handleSizeChange = (val) => {
   console.log(`${val} items per page`)
 }
@@ -95,74 +93,7 @@ const handleCurrentChange = (val) => {
 </script>
 
 <style scoped lang="scss">
-.el-pagination{
-  position: absolute;
-  left: 20px;
-  bottom: 10px;
-}
-.tc {
-  text-align: center;
-}
-.red {
-  color: red;
-}
-.green {
-  color: green;
-}
-.f16 {
-  font-size: 16px;
-}
-.goods {
-  display: flex;
-  align-items: center;
-  img {
-    width: 100px;
-    height: 100px;
-  }
-  > div {
-    width: 280px;
-    font-size: 16px;
-    padding-left: 10px;
-    .attr {
-      font-size: 14px;
-      color: #999;
-    }
-  }
-}
-
-.tit {
-  color: #666;
-  font-size: 16px;
-  font-weight: normal;
-  line-height: 50px;
-}
-.clue-page {
-  position: relative;
-  height: 100%;
-  background-color: white;
-  .clue {
-    background: #fff;
-    color: #666;
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      line-height: 24px;
-      th,
-      td {
-        padding: 10px;
-        border-bottom: 1px solid #f5f5f5;
-        &:first-child {
-          text-align: left;
-          padding-left: 30px;
-          color: #999;
-        }
-      }
-      th {
-        font-size: 16px;
-        font-weight: normal;
-        line-height: 50px;
-      }
-    }
-  }
+::v-deep .el-form-item__label {
+  padding-left: 12px;
 }
 </style>

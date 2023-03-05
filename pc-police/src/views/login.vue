@@ -86,6 +86,8 @@ const checkPassword = (rule, value, callback) => {
 
 const router = useRouter()
 
+const userdata = ref()
+
 // 登录相关操作
 const loginForm = ref(null)
 const picPath = ref('')
@@ -102,6 +104,7 @@ const login = () => {
   userAccountLogin(loginFormData)
     .then((res) => {
       if (res.data.status == 200) {
+        localStorage.setItem('user', JSON.stringify(res.data.result))
         router.push('/home')
       }
     })
