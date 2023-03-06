@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="content">
+    <div>
     <el-form
       :inline="true"
       :model="formInline"
@@ -13,7 +14,7 @@
         <el-input v-model="formInline.place" placeholder="请输入地点" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">查询</el-button>
+        <el-button type="primary" @click="onSubmit" >查询</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -74,6 +75,7 @@
         </span>
       </template>
     </el-dialog>
+  </div>
   </div>
 </template>
 
@@ -175,6 +177,10 @@ const clues1 = computed(() => {
 </script>
 
 <style scoped lang="scss">
+.content{
+  background-color: white;
+  padding: 20px;
+}
 ::v-deep .el-form-item__label {
   padding-left: 12px;
 }

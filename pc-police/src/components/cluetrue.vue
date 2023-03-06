@@ -1,4 +1,5 @@
 <template>
+ <div class="content">
   <div>
     <el-form
       :inline="true"
@@ -13,7 +14,7 @@
         <el-input v-model="formInline.place" placeholder="请输入地点" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">查询</el-button>
+        <el-button type="primary" @click="onSubmit"  >查询</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -44,6 +45,7 @@
     @size-change="handleSizeChange"
     @current-change="handleCurrentChange"
   />
+ </div>
 </template>
 
 <script>
@@ -93,6 +95,11 @@ const handleCurrentChange = (val) => {
 </script>
 
 <style scoped lang="scss">
+.content{
+  background-color: white;
+  padding: 20px;
+
+}
 ::v-deep .el-form-item__label {
   padding-left: 12px;
 }

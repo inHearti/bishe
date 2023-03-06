@@ -27,10 +27,7 @@
       padding: 0;
     }
     .el-main {
-      height: 895px;
-      padding: 20px 20px 0 20px;
-      margin: 20px;
-      background-color: #fff;
+      padding: 20px;
     }
   }
 }

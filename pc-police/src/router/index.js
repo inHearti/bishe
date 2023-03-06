@@ -4,6 +4,7 @@ import home from '../views/home.vue'
 import cluetrue from '@/components/cluetrue.vue'
 import cluefalse from '@/components/cluefalse.vue'
 import policeCase from '@/components/policeCase.vue'
+import dashboard from '@/components/dashboard.vue'
 
 const routes = [
   {
@@ -14,6 +15,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
+    redirect: 'dashboard',
     component: home,
     children: [{
       path: '/cluetrue',
@@ -29,8 +31,14 @@ const routes = [
       path: '/policeCase',
       name: 'policeCase',
       component: policeCase,
-    }]
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: dashboard,
+    },]
   },
+
 ]
 
 const router = createRouter({

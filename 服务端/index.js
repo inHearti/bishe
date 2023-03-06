@@ -34,7 +34,6 @@ const remindrouter = require('./router/remind')
 app.use('/remind', remindrouter)
 
 const lostrouter = require('./router/lost')
-const { json } = require('express')
 app.use('/lost', lostrouter)
 
 
