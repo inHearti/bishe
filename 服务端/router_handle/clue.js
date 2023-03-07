@@ -27,3 +27,21 @@ exports.feedbackclue = (req, res) => {
     })
 
 }
+
+//用户举报
+exports.report = (req, res) => {
+    const clueinfo = req.body
+    console.log(clueinfo);
+    const sqlStr = 'INSERT INTO clue SET ?'
+    db.query(sqlStr, clueinfo, (err, results) => {
+        if (err) {
+            //执行sql语句失败
+            return res.cc(err)
+        }
+        if (results.affectedRows !== 1) {
+            return res.cc('举报失败！')
+        }
+        res.cc('举报成功', 200)
+    })
+
+}

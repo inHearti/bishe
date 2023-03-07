@@ -103,7 +103,7 @@ const submitForm = async (formEl) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      circulate(ruleForm).then().catch(e=>{})
+      console.log(ruleForm.caseimage.raw);
     } else {
       console.log('error submit!', fields)
     }

@@ -2,9 +2,10 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 app.use(cors())
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 // 一定要在路由之前，封装 res.cc 函数
 app.use((req, res, next) => {
@@ -18,7 +19,6 @@ app.use((req, res, next) => {
     }
     next()
 })
-
 
 
 const userrouter = require('./router/user')

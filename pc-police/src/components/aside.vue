@@ -9,7 +9,7 @@
     @close="handleClose"
   >
     <div>
-      <img src="../assets/guohui.png" alt="" />
+      <img src="../assets/警徽.png" alt="" />
       <h2>平安武清</h2>
     </div>
 
@@ -123,7 +123,7 @@ const godashboard = () => {
 }
 
 const goguanwang= () => {
-  window.location.href='https://www.tjwq.gov.cn/'
+  window.location.href='https://ga.tj.gov.cn/'
 }
 </script>
 <!-- #4D70FF -->

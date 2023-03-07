@@ -2,6 +2,8 @@
   <div class="content">
     平安武清
   </div>
+ 
+
 </template>
 
 <style lang="scss" scoped>

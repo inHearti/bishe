@@ -2,10 +2,10 @@
   <div class="content">
     <!-- nav  -->
     <nav>
-      <a href="#">举报</a>
-      <a href="#">线索跟踪</a>
-      <a href="#">案件总览</a>
-      <a href="#">失物招领</a>
+      <div href="#" @click="goreport">举报</div>
+      <div href="#">线索跟踪</div>
+      <div href="#">案件总览</div>
+      <div href="#">失物招领</div>
     </nav>
 
     <!-- 跳转链接 -->
@@ -96,7 +96,9 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 // Import Swiper styles
 import 'swiper/scss';
 import 'swiper/scss/navigation';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 
 // Import Swiper styles
 export default {
@@ -105,15 +107,20 @@ export default {
     SwiperSlide,
   },
   setup() {
+    const router = useRouter()
     const onSwiper = (swiper) => {
       console.log(swiper);
     };
     const onSlideChange = () => {
       console.log('slide change');
     };
+    const goreport = ()=>{
+      router.push('/report')
+    }
     return {
       onSwiper,
       onSlideChange,
+      goreport,
       modules: [Navigation, A11y],
     };
   },
@@ -128,13 +135,16 @@ export default {
     display: flex;
     flex-wrap: wrap;
     background-color: white;
-    a {
+    div {
       width: 50%;
       font-size: 0.3333rem;
       text-decoration: none;
       text-align: center;
       color: #707070;
       font-family: ArialMT;
+      &:hover{
+        cursor: pointer;
+      }
       &::before {
         content: "";
         display: block;

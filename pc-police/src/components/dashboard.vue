@@ -7,13 +7,39 @@
             早安，管理员，请开始一天的工作吧
           </div>
           <div class="gva-top-card-left-dot">
-            今日晴，0℃ - 10℃，天气寒冷，注意添加衣物。
+            天津市 天气：霾 温度：9摄氏度 风向：东南 风力：≤3级 空气湿度：52
           </div>
         </div>
         <img src="@/assets/dashboard.png" class="gva-top-card-right" alt />
       </div>
     </div>
-    
+
+    <div class="gva-card-box">
+      <el-card class="gva-card quientranceck-">
+        <template #header>
+          <div class="card-header">
+            <span>快捷入口</span>
+          </div>
+        </template>
+        <el-row :gutter="20">
+          <el-col
+            v-for="(card, key) in toolCards"
+            :key="key"
+            :span="4"
+            :xs="8"
+            class="quick-entrance-items"
+          >
+            <div class="quick-entrance-item">
+              <div class="quick-entrance-item-icon" :style="{ backgroundColor: card.bg }">
+                <el-icon><Setting :color="card.color" /></el-icon>
+              </div>
+              <p>{{ card.label }}</p>
+            </div>
+          </el-col>
+        </el-row>
+
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -23,9 +49,55 @@ export default {
 }
 </script>
 <script setup>
+import { ref } from 'vue';
+import {  Setting} from '@element-plus/icons-vue'
 
+const toolCards= ref([
+{
+          label: '用户信息',
+          icon: 'Avatar',
+          name: 'about',
+          color: '#5cdbd3',
+          bg: 'rgba(92, 219, 211,.3)'
+        },
+        {
+          label: '反馈线索',
+          icon: 'monitor',
+          name: 'user',
+          color: '#ff9c6e',
+          bg: 'rgba(255, 156, 110,.3)'
+        },
+        {
+          label: '警情通报',
+          icon: 'setting',
+          name: 'authority',
+          color: '#69c0ff',
+          bg: 'rgba(105, 192, 255,.3)'
+        },
+        {
+          label: '案件总览',
+          icon: 'menu',
+          name: 'menu',
+          color: '#b37feb',
+          bg: 'rgba(179, 127, 235,.3)'
+        }, {
+          label: '失物招领',
+          icon: 'cpu',
+          name: 'autoCode',
+          color: '#ffd666',
+          bg: 'rgba(255, 214, 102,.3)'
+        },
+        {
+          label: '积分管理',
+          icon: 'document-checked',
+          name: 'formCreate',
+          color: '#ff85c0',
+          bg: 'rgba(255, 133, 192,.3)'
+        },
+      
 
-
+      ]
+)
 
 </script>
 
@@ -38,6 +110,7 @@ export default {
   background: #f0f2f5;
   padding: 0;
   .gva-card-box {
+    margin-bottom: 20px;
     & + .gva-card-box {
       padding-top: 0px;
     }
