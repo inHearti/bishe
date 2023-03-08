@@ -7,9 +7,8 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
-// 一定要在路由之前，封装 res.cc 函数
+// 在路由之前，封装 res.cc 函数
 app.use((req, res, next) => {
-    // status 默认值为 1，表示失败的情况
     // err 的值，可能是一个错误对象，也可能是一个错误的描述字符串
     res.cc = function (err, status = 1) {
         res.send({
@@ -19,7 +18,6 @@ app.use((req, res, next) => {
     }
     next()
 })
-
 
 const userrouter = require('./router/user')
 app.use('/user', userrouter)
@@ -35,7 +33,6 @@ app.use('/remind', remindrouter)
 
 const lostrouter = require('./router/lost')
 app.use('/lost', lostrouter)
-
 
 app.listen(80, () => {
     console.log('127.0.0.1');
