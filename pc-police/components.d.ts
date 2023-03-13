@@ -10,6 +10,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Aside: typeof import('./src/components/aside.vue')['default']
+    CaseList: typeof import('./src/components/caseList.vue')['default']
     Cluefalse: typeof import('./src/components/cluefalse.vue')['default']
     Cluetrue: typeof import('./src/components/cluetrue.vue')['default']
     Dashboard: typeof import('./src/components/dashboard.vue')['default']

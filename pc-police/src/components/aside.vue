@@ -72,7 +72,7 @@
         </el-menu-item>
       </el-menu-item-group>
     </el-sub-menu>
-    <el-menu-item index="6">
+    <el-menu-item index="6" @click="gocaselist">
       <el-icon><document /></el-icon>
       <span>案件总览</span>
     </el-menu-item>
@@ -120,6 +120,9 @@ const gopoliceCase = () => {
 }
 const godashboard = () => {
   router.push('/dashboard')
+}
+const gocaselist = () => {
+  router.push('/caselist')
 }
 
 const goguanwang= () => {

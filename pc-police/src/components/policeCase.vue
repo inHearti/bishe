@@ -1,53 +1,54 @@
 <template>
- <div class="content">
-  <el-form
-    ref="ruleFormRef"
-    :model="ruleForm"
-    :rules="rules"
-    label-width="120px"
-    class="demo-ruleForm"
-    :size="formSize"
-    status-icon
-  >
-    <el-form-item label="嫌疑人姓名" prop="name">
-      <el-input v-model="ruleForm.name" />
-    </el-form-item>
-    <el-form-item label="案发地点" prop="place">
-      <el-input v-model="ruleForm.place" />
-    </el-form-item>
-    <el-form-item label="案发时间" prop="case_time">
-      <el-date-picker
-        v-model="ruleForm.case_time"
-        type="datetime"
-        placeholder="选择时间"
-        format="YYYY-MM-DD hh:mm"
-        value-format="YYYY-MM-DD h:m a"
-      />
-    </el-form-item>
+  <div class="content">
+    <el-form
+      ref="ruleFormRef"
+      :model="ruleForm"
+      :rules="rules"
+      label-width="120px"
+      class="demo-ruleForm"
+      :size="formSize"
+      status-icon
+    >
+      <el-form-item label="嫌疑人姓名" prop="name">
+        <el-input v-model="ruleForm.name" />
+      </el-form-item>
+      <el-form-item label="案发地点" prop="place">
+        <el-input v-model="ruleForm.place" />
+      </el-form-item>
+      <el-form-item label="案发时间" prop="case_time">
+        <el-date-picker
+          v-model="ruleForm.case_time"
+          type="datetime"
+          placeholder="选择时间"
+          format="YYYY-MM-DD hh:mm"
+          value-format="YYYY-MM-DD h:m a"
+        />
+      </el-form-item>
 
-    <el-form-item label="上传图片" prop="caseimage">
-      <el-upload
-        class="avatar-uploader"
-        action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-        :show-file-list="true"
-        :on-success="handleAvatarSuccess"
-      >
-        <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-        <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
-      </el-upload>
-    </el-form-item>
+      <el-form-item label="上传图片" prop="caseimage">
+        <el-upload
+          class="avatar-uploader"
+          action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+          :show-file-list="true"
+          :on-success="handleAvatarSuccess"
+        >
+          <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+          <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+        </el-upload>
+      </el-form-item>
 
-    <el-form-item label="案件描述" prop="caseinfo">
-      <el-input v-model="ruleForm.caseinfo" type="textarea" />
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="submitForm(ruleFormRef)">
-        提交
-      </el-button>
-      <el-button @click="resetForm(ruleFormRef)">重置</el-button>
-    </el-form-item>
-  </el-form>
- </div>
+      <el-form-item label="案件描述" prop="caseinfo">
+        <el-input v-model="ruleForm.caseinfo" type="textarea" />
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm(ruleFormRef)">
+          提交
+        </el-button>
+        <el-button @click="resetForm(ruleFormRef)">重置</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
+  <img v-if="imageUrl1" :src="imageUrl1" class="avatar" />
 </template>
 <script>
 export default {
@@ -57,17 +58,18 @@ export default {
 <script setup>
 import { reactive, ref } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
-import {circulate} from '@/api/case'
+import { circulate } from '@/api/case'
 
 //上传图片
 const imageUrl = ref('')
+const imageUrl1 = ref('')
 
 const handleAvatarSuccess = (
   response,
   uploadFile
 ) => {
-  imageUrl.value= URL.createObjectURL(uploadFile.raw)
-  ruleForm.caseimage = uploadFile
+  imageUrl.value = URL.createObjectURL(uploadFile.raw)
+  ruleForm.caseimage = response
 }
 
 
@@ -99,16 +101,55 @@ const rules = reactive({
   ],
 })
 
+// 文件类型转Blob
+const fileToBlob = (file) => {
+  const type = file.type;
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+    let baseData = reader.result;
+    //base64-->blob
+    var byteString;
+    if(baseData.split(',')[0].indexOf('base64') >= 0)
+      byteString = atob(baseData.split(',')[1]);//base64 解码
+    else{
+      byteString = unescape(baseData.split(',')[1]);
+    }
+    var mimeString = baseData.split(',')[0].split(':')[1].split(';')[0];//mime类型 -- image/png
+    var ia = new Uint8Array(byteString.length);//创建视图
+    for(var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    var blob = new Blob([ia], {type});
+    
+    console.log(blob);
+    let file = blobToFile(blob)
+    console.log(file);
+  };
+ 
+};
+
+// Blob 转 File
+const blobToFile = (blob) => {
+  const file = new File([blob], { type: blob.type });
+  return file;
+}
+
+
 const submitForm = async (formEl) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
       console.log(ruleForm.caseimage.raw);
+      // fileToBlob(ruleForm.caseimage.raw)
+
+
+      // circulate(ruleForm).then()
     } else {
       console.log('error submit!', fields)
     }
   })
- 
+
 }
 
 const resetForm = (formEl) => {
@@ -123,7 +164,7 @@ const options = Array.from({ length: 10000 }).map((_, idx) => ({
 </script>
 
 <style lang="scss" scoped>
-.content{
+.content {
   background-color: white;
   padding: 20px;
 }

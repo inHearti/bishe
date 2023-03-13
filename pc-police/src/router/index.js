@@ -5,6 +5,7 @@ import cluetrue from '@/components/cluetrue.vue'
 import cluefalse from '@/components/cluefalse.vue'
 import policeCase from '@/components/policeCase.vue'
 import dashboard from '@/components/dashboard.vue'
+import caselist from '@/components/caseList.vue'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
       path: '/dashboard',
       name: 'dashboard',
       component: dashboard,
+    },
+    {
+      path: '/caselist',
+      name: 'caselist',
+      component: caselist,
     },]
   },
 

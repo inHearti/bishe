@@ -15,3 +15,14 @@ exports.circulate = (req, res) => {
     })
 
 }
+
+//获取案件
+exports.getcase = (req, res) => {
+    const sqlStr = 'select * from police_case'
+    db.query(sqlStr, (err, results) => {
+        if (err) return res.cc(err)
+        if (results.length == 0) return res.cc('案件为空')
+        console.log(results);
+        res.cc(results, 200)
+    })
+}
