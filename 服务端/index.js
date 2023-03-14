@@ -34,6 +34,9 @@ app.use('/remind', remindrouter)
 const lostrouter = require('./router/lost')
 app.use('/lost', lostrouter)
 
+const inforouter = require('./router/information')
+app.use('/info', inforouter)
+
 app.listen(80, () => {
     console.log('127.0.0.1');
 })

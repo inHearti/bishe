@@ -6,6 +6,9 @@ import cluefalse from '@/components/cluefalse.vue'
 import policeCase from '@/components/policeCase.vue'
 import dashboard from '@/components/dashboard.vue'
 import caselist from '@/components/caseList.vue'
+import lostitem from '@/components/lostItem.vue'
+import remind from '@/components/remind.vue'
+import information from '@/components/information.vue'
 
 const routes = [
   {
@@ -42,7 +45,23 @@ const routes = [
       path: '/caselist',
       name: 'caselist',
       component: caselist,
+    }, 
+    {
+      path: '/lostitem',
+      name: 'lostitem',
+      component: lostitem,
+    },
+    {
+      path: '/remind',
+      name: 'remind',
+      component: remind,
+    },
+    {
+      path: '/information',
+      name: 'information',
+      component: information,
     },]
+
   },
 
 ]

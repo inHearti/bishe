@@ -19,26 +19,15 @@
     </el-menu-item>
 
     <el-menu-item index="2" @click="godashboard">
-      <el-icon><odometer /></el-icon>
+      <el-icon><odometer/></el-icon>
       <span>仪表盘</span>
     </el-menu-item>
 
-    <el-sub-menu index="3">
-      <template #title>
-        <el-icon><User /></el-icon>
-        <span>账号管理</span>
-      </template>
-      <el-menu-item-group>
-        <el-menu-item index="3-1" >
-          <el-icon><Avatar /></el-icon>
-          <span>管理员信息</span></el-menu-item
-        >
-        <el-menu-item index="3-2">
-          <el-icon><Avatar /></el-icon>
-          <span>用户信息</span>
-        </el-menu-item>
-      </el-menu-item-group>
-    </el-sub-menu>
+    <el-menu-item index="3" @click="goinformation">
+      <el-icon><Iphone /></el-icon>
+      <span>咨询管理</span>
+    </el-menu-item>
+
 
     <el-sub-menu index="4">
       <template #title>
@@ -66,7 +55,7 @@
           <el-icon><Promotion /></el-icon>
           <span>警情通报</span></el-menu-item
         >
-        <el-menu-item index="5-2">
+        <el-menu-item index="5-2" @click="goremind">
           <el-icon><Promotion /></el-icon>
           <span>防诈提醒</span>
         </el-menu-item>
@@ -76,7 +65,7 @@
       <el-icon><document /></el-icon>
       <span>案件总览</span>
     </el-menu-item>
-    <el-menu-item index="7">
+    <el-menu-item index="7" @click="golostitem">
       <el-icon><Present /></el-icon>
       <span>失物招领</span>
     </el-menu-item>
@@ -103,8 +92,8 @@ import { Promotion } from '@element-plus/icons-vue'
 import { Coin } from '@element-plus/icons-vue'
 import { Present } from '@element-plus/icons-vue'
 import { HomeFilled } from '@element-plus/icons-vue'
-import {  User} from '@element-plus/icons-vue'
-import {  Avatar} from '@element-plus/icons-vue'
+import {  Iphone} from '@element-plus/icons-vue'
+
 
 import { useRouter } from 'vue-router'
 
@@ -123,6 +112,15 @@ const godashboard = () => {
 }
 const gocaselist = () => {
   router.push('/caselist')
+}
+const golostitem = () => {
+  router.push('/lostitem')
+}
+const goremind = () => {
+  router.push('/remind')
+}
+const goinformation = () => {
+  router.push('/information')
 }
 
 const goguanwang= () => {

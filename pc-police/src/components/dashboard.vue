@@ -54,7 +54,7 @@ import {  Setting} from '@element-plus/icons-vue'
 
 const toolCards= ref([
 {
-          label: '用户信息',
+          label: '咨询管理',
           icon: 'Avatar',
           name: 'about',
           color: '#5cdbd3',

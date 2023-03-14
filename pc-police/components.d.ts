@@ -38,9 +38,13 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElText: typeof import('element-plus/es')['ElText']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     Header: typeof import('./src/components/header.vue')['default']
+    Information: typeof import('./src/components/information.vue')['default']
+    LostItem: typeof import('./src/components/lostItem.vue')['default']
     PoliceCase: typeof import('./src/components/policeCase.vue')['default']
+    Remind: typeof import('./src/components/remind.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -22,7 +22,6 @@ exports.getcase = (req, res) => {
     db.query(sqlStr, (err, results) => {
         if (err) return res.cc(err)
         if (results.length == 0) return res.cc('案件为空')
-        console.log(results);
         res.cc(results, 200)
     })
 }
