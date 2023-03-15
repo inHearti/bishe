@@ -3,73 +3,72 @@
     active-text-color="#ffd04b"
     background-color="rgb(25,26,35)"
     class="el-menu-vertical-demo"
-    default-active="2"
     text-color="#fff"
     @open="handleOpen"
     @close="handleClose"
+    :router="true"
   >
     <div>
       <img src="../assets/警徽.png" alt="" />
       <h2>平安武清</h2>
     </div>
 
-    <el-menu-item index="1" @click="goguanwang" >
+    <el-menu-item index="/home" @click="goguanwang">
       <el-icon><HomeFilled /></el-icon>
       <span>官方网站</span>
     </el-menu-item>
 
-    <el-menu-item index="2" @click="godashboard">
-      <el-icon><odometer/></el-icon>
+    <el-menu-item index="/dashboard">
+      <el-icon><odometer /></el-icon>
       <span>仪表盘</span>
     </el-menu-item>
 
-    <el-menu-item index="3" @click="goinformation">
+    <el-menu-item index="/information">
       <el-icon><Iphone /></el-icon>
       <span>咨询管理</span>
     </el-menu-item>
 
-
-    <el-sub-menu index="4">
+    <el-sub-menu index="1">
       <template #title>
         <el-icon><document /></el-icon>
         <span>线索管理</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="4-1" @click="gocluefalse">
+        <el-menu-item index="/cluefalse">
           <el-icon><QuestionFilled /></el-icon>
           <span>待处理线索</span></el-menu-item
         >
-        <el-menu-item index="4-2" @click="gocluetrue">
+        <el-menu-item index="/cluetrue">
           <el-icon><SuccessFilled /></el-icon>
           <span>已处理线索</span>
         </el-menu-item>
       </el-menu-item-group>
     </el-sub-menu>
-    <el-sub-menu index="5">
+    <el-sub-menu index="2">
       <template #title>
         <el-icon><Microphone /></el-icon>
         <span>通知管理</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="5-1" @click="gopoliceCase">
+        <el-menu-item index="/policeCase">
           <el-icon><Promotion /></el-icon>
           <span>警情通报</span></el-menu-item
         >
-        <el-menu-item index="5-2" @click="goremind">
+        <el-menu-item index="/remind">
           <el-icon><Promotion /></el-icon>
           <span>防诈提醒</span>
         </el-menu-item>
       </el-menu-item-group>
     </el-sub-menu>
-    <el-menu-item index="6" @click="gocaselist">
+    <el-menu-item index="/caselist">
       <el-icon><document /></el-icon>
       <span>案件总览</span>
     </el-menu-item>
-    <el-menu-item index="7" @click="golostitem">
+    <el-menu-item index="/lostitem">
       <el-icon><Present /></el-icon>
       <span>失物招领</span>
     </el-menu-item>
-    <el-menu-item index="8">
+    <el-menu-item index="/integral">
       <el-icon><Coin /></el-icon>
       <span>积分管理</span>
     </el-menu-item>
@@ -92,39 +91,42 @@ import { Promotion } from '@element-plus/icons-vue'
 import { Coin } from '@element-plus/icons-vue'
 import { Present } from '@element-plus/icons-vue'
 import { HomeFilled } from '@element-plus/icons-vue'
-import {  Iphone} from '@element-plus/icons-vue'
+import { Iphone } from '@element-plus/icons-vue'
 
 
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const gocluefalse = () => {
-  router.push('/cluefalse')
-}
-const gocluetrue = () => {
-  router.push('/cluetrue')
-}
-const gopoliceCase = () => {
-  router.push('/policeCase')
-}
-const godashboard = () => {
-  router.push('/dashboard')
-}
-const gocaselist = () => {
-  router.push('/caselist')
-}
-const golostitem = () => {
-  router.push('/lostitem')
-}
-const goremind = () => {
-  router.push('/remind')
-}
-const goinformation = () => {
-  router.push('/information')
-}
+// const gocluefalse = () => {
+//   router.push('/cluefalse')
+// }
+// const gocluetrue = () => {
+//   router.push('/cluetrue')
+// }
+// const gopoliceCase = () => {
+//   router.push('/policeCase')
+// }
+// const godashboard = () => {
+//   router.push('/dashboard')
+// }
+// const gocaselist = () => {
+//   router.push('/caselist')
+// }
+// const golostitem = () => {
+//   router.push('/lostitem')
+// }
+// const goremind = () => {
+//   router.push('/remind')
+// }
+// const goinformation = () => {
+//   router.push('/information')
+// }
+// const gointegral= () => {
+//   router.push('/integral')
+// }
 
-const goguanwang= () => {
-  window.location.href='https://ga.tj.gov.cn/'
+const goguanwang = () => {
+  window.location.href = 'https://ga.tj.gov.cn/'
 }
 </script>
 <!-- #4D70FF -->
@@ -170,7 +172,7 @@ const goguanwang= () => {
     border-radius: 5px;
   }
   .el-menu-item,
-  ::v-deep .el-sub-menu__title{
+  ::v-deep .el-sub-menu__title {
     height: 44px;
   }
 }

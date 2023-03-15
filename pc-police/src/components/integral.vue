@@ -2,13 +2,15 @@
   <div class="content">
  
    <el-table :data="info" style="width: 100%">
-    <el-table-column  label="图片">
+    <el-table-column  label="头像">
        <template #default>
         <img src="../assets/github.png" alt="">
        </template>
      </el-table-column>
-     <el-table-column prop="info_title" label="标题"  />
-     <el-table-column prop="info_link" label="链接" />
+     <el-table-column prop="id" label="ID"  />
+     <el-table-column prop="name" label="用户名" />
+     <el-table-column prop="phone" label="手机号" />
+     <el-table-column prop="integral" label="积分" />
      <el-table-column fixed="right" label="操作" width="180">
        <template #default>
          <el-button link type="primary" size="small" @click="handleClick"
@@ -23,21 +25,20 @@
  
  <script>
  export default {
-   name: 'information',
+   name: 'integral',
  }
  </script>
  
  <script setup>
- import { getinfo } from '@/api/information'
+ import { getcommoninfo } from '@/api/user'
  import { computed, ref, reactive } from 'vue'
  
  
 const info = ref([])
  
- getinfo()
+getcommoninfo()
    .then((res) => {
      const arr = []
-
      res.data.result.forEach((item) => {
     
          arr.push(item)
@@ -58,6 +59,7 @@ const info = ref([])
     width: 50px;
     height: 50px;
    }
+ 
  }
  ::v-deep .el-form-item__label {
    padding-left: 12px;

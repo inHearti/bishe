@@ -19,7 +19,7 @@
     </el-form>
   </div>
 
-  <el-table :data="clues" style="width: 100%">
+  <el-table :data="clues1" style="width: 100%">
     <el-table-column prop="id" label="线索ID" width="80" />
     <el-table-column prop="time" label="时间" width="180" />
     <el-table-column prop="place" label="地点" />
@@ -27,7 +27,7 @@
     <el-table-column prop="status_2" label="状态" width="180" />
     <el-table-column fixed="right" label="操作" width="180">
       <template #default="scope">
-        <el-button link type="primary" size="small" @click="handleClick"
+        <el-button link type="primary" size="small" @click="moreinfo(scope.row.id)"
           >详细信息</el-button
         >
         <el-button
@@ -54,7 +54,38 @@
       @current-change="handleCurrentChange"
     />
 
-    <el-dialog v-model="dialogFormVisible" title="反馈">
+    <el-dialog v-model="dialogFormVisible2" title="详细信息">
+      <el-form :data="clues">
+        <el-form-item label="线索ID" :label-width="formLabelWidth">
+         {{more_clue.id}}
+        </el-form-item>
+        <el-form-item label="时间" :label-width="formLabelWidth">
+          {{ more_clue.time }}
+        </el-form-item>
+        <el-form-item label="地点" :label-width="formLabelWidth">
+          {{ more_clue.place }}
+        </el-form-item>
+        <el-form-item label="举报人手机号" :label-width="formLabelWidth">
+          {{ more_clue.people }}
+        </el-form-item>       
+        <el-form-item label="图片信息" :label-width="formLabelWidth">
+          <img src="../assets/github.png" alt="">
+        </el-form-item>
+        <el-form-item label="描述信息" :label-width="formLabelWidth">
+          {{ more_clue.message }}
+        </el-form-item> 
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogFormVisible2 = false">关闭</el-button>
+          <el-button type="primary" @click="moreinfoback"> 反馈 </el-button>
+        </span>
+      </template>
+    </el-dialog>
+
+
+
+    <el-dialog v-model="dialogFormVisible1" title="反馈" class="back">
       <el-form :model="form">
         <el-form-item label="线索ID" :label-width="formLabelWidth">
           <el-input disabled v-model="form.id" autocomplete="off" />
@@ -64,13 +95,13 @@
             <el-option label="武清东蒲洼派出所" value="武清东蒲洼派出所" />
           </el-select>
         </el-form-item>
-        <el-form-item label="反馈" :label-width="formLabelWidth">
-          <el-input v-model="form.feedback" autocomplete="off" />
+        <el-form-item label="反馈信息" :label-width="formLabelWidth">
+          <el-input v-model="form.feedback" autocomplete="off" type="textarea"/>
         </el-form-item>
       </el-form>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">关闭</el-button>
+          <el-button @click="dialogFormVisible1 = false">关闭</el-button>
           <el-button type="primary" @click="submit"> 提交 </el-button>
         </span>
       </template>
@@ -90,6 +121,8 @@ import { getclue, feedbackclue } from '@/api/clue'
 import { computed, ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
+
+
 const labelPosition = ref('left')
 //查询参数
 const formInline = reactive({
@@ -98,14 +131,35 @@ const formInline = reactive({
 })
 
 //控制弹窗显示
-const dialogFormVisible = ref(false)
-const formLabelWidth = '140px'
+const dialogFormVisible1 = ref(false)
+const dialogFormVisible2 = ref(false)
+const formLabelWidth = '120px'
+
+//详细信息获取
+
+const more_clue = ref()
+const moreinfo = (id)=>{
+
+  dialogFormVisible2.value=true
+    clues.value.forEach((item)=>{
+    if(item.id == id){
+      more_clue.value = item
+      return
+    }
+  })
+}
+
+//详细信息反馈
+const moreinfoback =  ()=>{
+  dialogFormVisible1.value = true
+  selectid.value = more_clue.value.id
+}
 
 //反馈id
 const selectid = ref()
 const feedback = (id) => {
   selectid.value = id
-  dialogFormVisible.value = true
+  dialogFormVisible1.value = true
 }
 // 获取当前时间
 const formatTime = (data) => {
@@ -136,7 +190,7 @@ const form = reactive({
 const router = useRouter()
 //提交反馈
 const submit = () => {
-  dialogFormVisible.value = false
+  dialogFormVisible1.value = false
   feedbackclue(form)
     .then((res) => {
       getclue()
@@ -177,6 +231,13 @@ const clues1 = computed(() => {
 </script>
 
 <style scoped lang="scss">
+
+::v-deep .back{
+  &:last-child{
+    width: 40%;
+    margin-top: 20vh;
+  }
+}
 .content{
   background-color: white;
   padding: 20px;

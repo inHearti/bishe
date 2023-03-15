@@ -9,6 +9,7 @@ import caselist from '@/components/caseList.vue'
 import lostitem from '@/components/lostItem.vue'
 import remind from '@/components/remind.vue'
 import information from '@/components/information.vue'
+import integral from '@/components/integral.vue'
 
 const routes = [
   {
@@ -60,12 +61,17 @@ const routes = [
       path: '/information',
       name: 'information',
       component: information,
+    },
+    {
+      path: '/integral',
+      name: 'integral',
+      component: integral,
     },]
 
   },
 
 ]
-
+ 
 const router = createRouter({
   history: createWebHashHistory(),
   routes

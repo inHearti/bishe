@@ -43,3 +43,14 @@ exports.login = (req, res) => {
             res.cc(results[0], 200)
     })
 }
+
+
+//获取普通用户信息
+exports.getcommoninfo = (req, res) => {
+    const sqlStr = 'select * from common_users'
+    db.query(sqlStr, (err, results) => {
+        if (err) return res.cc(err)
+        if (results.length == 0) return res.cc('用户信息为空')
+        res.cc(results, 200)
+    })
+}

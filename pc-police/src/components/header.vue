@@ -12,19 +12,18 @@
       <template #title>
         <div class="block">
           <el-avatar :size="35" :src="circleUrl" />
-          <span>user</span>
+          <span>{{username}}</span>
         </div>
       </template>
-      <el-menu-item index="2-1">item one</el-menu-item>
-      <el-menu-item index="2-2">item two</el-menu-item>
-      <el-menu-item index="2-3">item three</el-menu-item>
+      <el-menu-item index="2-1">个人信息</el-menu-item>
+      <el-menu-item index="2-2">退出登录</el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-
+const username = JSON.parse(localStorage.getItem('user')).name
 const circleUrl =
   ref('https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png')
 const activeIndex = ref('1')

@@ -21,18 +21,16 @@
  
    <el-table :data="cases1" style="width: 100%">
      <el-table-column prop="id" label="案件ID" width="80" />
-     <el-table-column prop="caseimage" label="照片" />
+     <el-table-column  label="照片">
+       <template #default>
+        <img src="../assets/github.png" alt="">
+       </template>
+     </el-table-column>
+
      <el-table-column prop="name" label="嫌疑人姓名"  />
      <el-table-column prop="case_time" label="案发时间" />
      <el-table-column prop="place" label="案发地点"  />
      <el-table-column prop="caseinfo" label="描述" />
-     <el-table-column fixed="right" label="操作" width="180">
-       <template #default>
-         <el-button link type="primary" size="small" @click="handleClick"
-           >详细信息</el-button
-         >
-       </template>
-     </el-table-column>
    </el-table>
  
    <el-pagination
@@ -100,6 +98,10 @@
  .content{
    background-color: white;
    padding: 20px;
+   img{
+    width: 100px;
+    height: 100px;
+   }
  
  }
  ::v-deep .el-form-item__label {
