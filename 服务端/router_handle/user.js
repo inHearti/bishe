@@ -6,7 +6,7 @@ exports.register = (req, res) => {
     const userinfo = req.body
     // 定义 SQL 语句，查询用户名是否被占用
     const sqlStr = 'select * from police_users where phone=?'
-
+    console.log(userinfo);
     db.query(sqlStr, userinfo.phone, (err, results) => {
         if (err) {
             //执行sql语句失败

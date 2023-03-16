@@ -30,18 +30,6 @@
             />
           </el-form-item>
           <el-form-item>
-            <div class="vPicBox">
-              <el-input
-                placeholder="请输入验证码"
-                size="large"
-                style="flex: 1; padding-right: 20px"
-              />
-              <div class="vPic">
-                <img v-if="picPath" :src="picPath" />
-              </div>
-            </div>
-          </el-form-item>
-          <el-form-item>
             <el-button @click="login" type="primary" style="width: 46%"
               >登录</el-button
             >
@@ -79,19 +67,14 @@
         <el-input v-model="ruleForm2.password" autocomplete="off" />
       </el-form-item>
       <el-form-item label="确认密码" prop="checkPass">
-        <el-input
-          v-model="ruleForm2.checkPass"
-          autocomplete="off"
-        />
+        <el-input v-model="ruleForm2.checkPass" autocomplete="off" />
       </el-form-item>
     </el-form>
-    
-        <el-form-item>
-          <el-button @click="dialogFormVisible1 = false">关闭</el-button>
-        <el-button type="primary" @click="submit(ruleForm2)"> 注册 </el-button>
-      </el-form-item>
-        
-    
+
+    <el-form-item>
+      <el-button @click="dialogFormVisible1 = false">关闭</el-button>
+      <el-button type="primary" @click="submit(ruleFormRef)"> 注册 </el-button>
+    </el-form-item>
   </el-dialog>
 </template>
 
@@ -153,8 +136,8 @@ const login = () => {
     })
 }
 
-//控制弹窗显示
-const ruleFormRef = ref(null);
+//注册弹窗
+const ruleFormRef = ref();
 const dialogFormVisible1 = ref(false)
 const checkName = (rule, value, callback) => {
   if (!value) {
@@ -215,6 +198,7 @@ const ruleForm2 = reactive({
   age: '',
 })
 
+
 const rules2 = reactive({
   name: [{ validator: checkName, trigger: 'blur' }],
   phone: [{ validator: checkPhone, trigger: 'blur' }],
@@ -223,12 +207,17 @@ const rules2 = reactive({
   age: [{ validator: checkAge, trigger: 'blur' }],
 })
 
-const submit = (ruleForm2) => {
-  if (!ruleFormRef) return
-  ruleFormRef[ruleForm2].validate((valid) => {
+const submit = (formEl) => {
+  if (!formEl) return
+  formEl.validate((valid) => {
     if (valid) {
-      console.log(ruleForm2);
-      register(ruleForm2).then()
+      const ruleForm3 = {
+        name: ruleForm2.name,
+        phone: ruleForm2.phone,
+        password: ruleForm2.password,
+        age: ruleForm2.age
+      }
+      register(ruleForm3).then()
     } else {
       console.log('error submit!')
       return false
@@ -245,6 +234,5 @@ const resetForm = (formEl) => {
 </script>
 <style lang="scss" scoped>
 @import "@/style/newLogin.scss";
-
 </style>
 
