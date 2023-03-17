@@ -50,6 +50,33 @@ INSERT INTO `clue` VALUES (1,'2023/2/9','武清区天津天狮学院新校区12-
 UNLOCK TABLES;
 
 --
+-- Table structure for table `common_users`
+--
+
+DROP TABLE IF EXISTS `common_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `common_users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `phone` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `integral` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `common_users`
+--
+
+LOCK TABLES `common_users` WRITE;
+/*!40000 ALTER TABLE `common_users` DISABLE KEYS */;
+INSERT INTO `common_users` VALUES (1,'张三','15713031122','123456','5');
+/*!40000 ALTER TABLE `common_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `information`
 --
 
@@ -137,13 +164,13 @@ DROP TABLE IF EXISTS `police_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `police_users` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `age` int DEFAULT NULL,
   `phone` int DEFAULT NULL,
   `password` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +179,7 @@ CREATE TABLE `police_users` (
 
 LOCK TABLES `police_users` WRITE;
 /*!40000 ALTER TABLE `police_users` DISABLE KEYS */;
-INSERT INTO `police_users` VALUES (1,'张三',20,110,123456),(2,'李四',22,111,112233);
+INSERT INTO `police_users` VALUES (1,'张三',20,110,123456),(2,'李四',22,111,112233),(3,'丁真',66,999,123);
 /*!40000 ALTER TABLE `police_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,4 +215,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-14 17:14:06
+-- Dump completed on 2023-03-17  9:05:13
