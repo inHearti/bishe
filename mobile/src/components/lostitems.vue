@@ -1,0 +1,103 @@
+<template>
+  <van-nav-bar
+  title="失物招领"
+  left-text="返回"
+  left-arrow
+  @click-left="onClickLeft"
+  fixed="true"
+  placeholder="true"
+/>
+  <van-grid :border="false" :column-num="3">
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg"
+    />
+    xxx
+  </van-grid-item>
+  <van-grid-item>
+    <van-image
+      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg"
+    />
+    xxx
+  </van-grid-item>
+</van-grid>
+
+</template>
+
+<script setup>
+//返回
+const onClickLeft = () => history.back();
+
+</script>
+
+<style lang="scss" scoped>
+.van-grid{
+  padding: 20px;
+}
+</style>

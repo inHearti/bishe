@@ -3,6 +3,7 @@ import home from '../views/home.vue'
 
 
 import Report from '@/components/report.vue'
+import lostitem from '@/components/lostitems.vue'
 
 const routes = [
   {
@@ -18,6 +19,12 @@ const routes = [
     path: '/report',
     name: 'report',
     component: Report,
+  }
+  ,
+  {
+    path: '/lostitem',
+    name: 'lostitem',
+    component: lostitem,
   }
 ]
 

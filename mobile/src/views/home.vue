@@ -1,7 +1,9 @@
 <template>
-  <div class="content1">
-    平安武清
-  </div>
+    <van-nav-bar
+  title="平安武清"
+  fixed="true"
+  placeholder="true"
+/>
 
   <div class="content2">
     <!-- nav  -->
@@ -9,7 +11,7 @@
       <div href="#" @click="goreport">举报</div>
       <div href="#">线索跟踪</div>
       <div href="#">案件总览</div>
-      <div href="#">失物招领</div>
+      <div href="#" @click="golostitem">失物招领</div>
     </nav>
 
     <!-- 跳转链接 -->
@@ -27,7 +29,7 @@
           <img src="../assets/i2.png" alt="" />
           失物招领
         </h4>
-        <a href="">更多>></a>
+        <div @click="golostitem">更多>></div>
       </div>
       <div class="lostitem_bd">
         <swiper
@@ -40,12 +42,11 @@
           @swiper="onSwiper"
           @slideChange="onSlideChange"
         >
-          <swiper-slide><img src="../assets/img2.png" alt="" /></swiper-slide>
-          <swiper-slide><img src="../assets/img3.jpg" alt="" /></swiper-slide>
-          <swiper-slide><img src="../assets/img2.png" alt="" /></swiper-slide>
-          <swiper-slide><img src="../assets/img3.jpg" alt="" /></swiper-slide>
-          <swiper-slide><img src="../assets/img2.png" alt="" /></swiper-slide>
-          <swiper-slide><img src="../assets/img3.jpg" alt="" /></swiper-slide>
+          <swiper-slide><img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg" alt="" /></swiper-slide>
+          <swiper-slide><img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg" alt="" /></swiper-slide>
+          <swiper-slide><img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg" alt="" /></swiper-slide>
+          <swiper-slide><img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg" alt="" /></swiper-slide>
+          <swiper-slide><img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg" alt="" /></swiper-slide>
         </swiper>
       </div>
     </section>
@@ -58,7 +59,7 @@
           <img src="../assets/i2.png" alt="" />
           咨询
         </h4>
-        <a href="">更多>></a>
+        <div>更多>></div>
       </div>
       <div class="info_bd">
         <swiper
@@ -118,13 +119,18 @@ export default {
     const onSlideChange = () => {
       console.log('slide change');
     };
-    const goreport = ()=>{
+    const goreport = () => {
       router.push('/report')
     }
+    const golostitem = () => {
+      router.push('/lostitem')
+    }
+
     return {
       onSwiper,
       onSlideChange,
       goreport,
+      golostitem,
       modules: [Navigation, A11y],
     };
   },
@@ -134,14 +140,7 @@ export default {
 <style lang="scss" scoped>
 
 
-.content1{
-    height: 7vh;
-    line-height: 7vh;
-    font-size: 20px;
-  
-  }
-
-  .content2 {
+.content2 {
   background-color: #eaeaea;
   nav {
     display: flex;
@@ -154,7 +153,7 @@ export default {
       text-align: center;
       color: #707070;
       font-family: ArialMT;
-      &:hover{
+      &:hover {
         cursor: pointer;
       }
       &::before {
@@ -226,7 +225,7 @@ export default {
         height: 0.5067rem;
       }
     }
-    a {
+    div {
       margin-top: 0.6267rem;
       margin-right: 0.32rem;
       font-size: 0.2933rem;
@@ -234,14 +233,15 @@ export default {
       font-family: MicrosoftYaHei;
     }
   }
-  .lostitem_bd,.info_bd {
+  .lostitem_bd,
+  .info_bd {
     background-color: white;
     padding: 0.4667rem 0 0.5067rem;
   }
-   
-  .info{
-    .swiper{
-      padding:.4667rem 0 .5067rem .3067rem;
+
+  .info {
+    .swiper {
+      padding: 0.4667rem 0 0.5067rem 0.3067rem;
     }
     .swiper-slide {
       position: relative;
@@ -249,30 +249,29 @@ export default {
       padding-top: 1px;
       opacity: 1;
       transform: scale(1);
-      border-radius: .1333rem;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-        a{
-          top: 0;
-          position: absolute;
-          img{
+      border-radius: 0.1333rem;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      a {
+        top: 0;
+        position: absolute;
+        img {
           width: 37vw;
           height: 32vw;
         }
-        h5{
-            padding: 0 .076rem;
-            font-weight: 400;
-            font-size: .4rem;
-            font-family: MicrosoftYaHei;
-            color: #333;
+        h5 {
+          padding: 0 0.076rem;
+          font-weight: 400;
+          font-size: 0.4rem;
+          font-family: MicrosoftYaHei;
+          color: #333;
         }
-        }
-        
+      }
     }
     .swiper-slide-active,
-  .swiper-slide-duplicate-active {
-    opacity: 1;
-    transform: scale(1);
-  }
+    .swiper-slide-duplicate-active {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
   .swiper-slide {
     text-align: center;
