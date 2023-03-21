@@ -1,4 +1,10 @@
 <template>
+  <van-nav-bar
+  title="举报"
+  left-text="返回"
+  left-arrow
+  @click-left="onClickLeft"
+/>
   <van-form @failed="onFailed">
     <van-cell-group inset>
       <van-field
@@ -79,6 +85,9 @@
 import { reactive, ref } from 'vue';
 import { areaList } from '@vant/area-data';
 import {report} from '@/api/clue'
+
+//返回
+const onClickLeft = () => history.back();
 
 //表单数据
 const form = reactive({

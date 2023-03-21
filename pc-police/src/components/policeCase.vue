@@ -69,7 +69,7 @@ const handleAvatarSuccess = (
   uploadFile
 ) => {
   imageUrl.value = URL.createObjectURL(uploadFile.raw)
-  ruleForm.caseimage = response
+  ruleForm.caseimage = uploadFile
 }
 
 
@@ -102,36 +102,50 @@ const rules = reactive({
 })
 
 // 文件类型转Blob
-const fileToBlob = (file) => {
-  const type = file.type;
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = function () {
-    let baseData = reader.result;
-    //base64-->blob
-    var byteString;
-    if(baseData.split(',')[0].indexOf('base64') >= 0)
-      byteString = atob(baseData.split(',')[1]);//base64 解码
-    else{
-      byteString = unescape(baseData.split(',')[1]);
-    }
-    var mimeString = baseData.split(',')[0].split(':')[1].split(';')[0];//mime类型 -- image/png
-    var ia = new Uint8Array(byteString.length);//创建视图
-    for(var i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
-    }
-    var blob = new Blob([ia], {type});
+// const fileToBlob = (file) => {
+//   const type = file.type;
+//   const reader = new FileReader();
+//   reader.readAsDataURL(file);
+//   reader.onload = function () {
+//     let baseData = reader.result;
+//     //base64-->blob
+//     var byteString;
+//     if(baseData.split(',')[0].indexOf('base64') >= 0)
+//       byteString = atob(baseData.split(',')[1]);//base64 解码
+//     else{
+//       byteString = unescape(baseData.split(',')[1]);
+//     }
+//     var mimeString = baseData.split(',')[0].split(':')[1].split(';')[0];//mime类型 -- image/png
+//     var ia = new Uint8Array(byteString.length);//创建视图
+//     for(var i = 0; i < byteString.length; i++) {
+//       ia[i] = byteString.charCodeAt(i);
+//     }
+//     var blob = new Blob([ia], {type});
     
-    console.log(blob);
-    let file = blobToFile(blob)
-    console.log(file);
-  };
+//     console.log(blob);
+//     let file = blobToFile(blob)
+//     console.log(file);
+//   };
  
-};
+// };
+
+const fileToBlob = (file)=>{
+	const type = file.type;
+	const reader = new FileReader();
+	reader.readAsDataURL(file)
+	reader.onload = function(e) {
+	    const blob = new Blob([e.target.result], {type});
+	    console.log("blob:", blob);
+	    const file1 = blobToFile(blob, 'fileName');
+         console.log('file', file1);
+         imageUrl1.value = URL.createObjectURL(file1)
+	};
+}
+
 
 // Blob 转 File
-const blobToFile = (blob) => {
-  const file = new File([blob], { type: blob.type });
+const blobToFile = (blob,fileName) => {
+  const file = new File([blob], fileName, {type: blob.type});
   return file;
 }
 
@@ -141,8 +155,8 @@ const submitForm = async (formEl) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       console.log(ruleForm.caseimage.raw);
-      // fileToBlob(ruleForm.caseimage.raw)
-
+      fileToBlob(ruleForm.caseimage.raw)
+      
 
       // circulate(ruleForm).then()
     } else {
