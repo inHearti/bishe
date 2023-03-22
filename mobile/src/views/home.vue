@@ -9,8 +9,8 @@
     <!-- nav  -->
     <nav>
       <div href="#" @click="goreport">举报</div>
-      <div href="#">线索跟踪</div>
-      <div href="#">案件总览</div>
+      <div href="#" @click="gocluelist">线索跟踪</div>
+      <div href="#" @click="gocaselist">案件总览</div>
       <div href="#" @click="golostitem">失物招领</div>
     </nav>
 
@@ -125,12 +125,20 @@ export default {
     const golostitem = () => {
       router.push('/lostitem')
     }
-
+    const gocaselist = () => {
+      router.push('/caselist')
+    }
+    const gocluelist = () => {
+      router.push('/cluelist')
+    }
+    
     return {
       onSwiper,
       onSlideChange,
       goreport,
       golostitem,
+      gocaselist,
+      gocluelist,
       modules: [Navigation, A11y],
     };
   },
