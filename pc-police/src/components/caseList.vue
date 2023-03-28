@@ -21,9 +21,9 @@
  
    <el-table :data="cases1" style="width: 100%">
      <el-table-column prop="id" label="案件ID" width="80" />
-     <el-table-column  label="照片">
-       <template #default>
-        <img src="../assets/github.png" alt="">
+     <el-table-column prop="caseimage" label="照片">
+       <template #default="scope">
+        <img :src="scope.row.caseimage" alt="">
        </template>
      </el-table-column>
 
@@ -68,13 +68,24 @@
  const pageSize = ref(6)
  
  const cases = ref([])
- 
+
+const arrayBufferToBase64 =(buffer)=> {
+        var binary = ''
+        var bytes = new Uint8Array(buffer)
+        var len = bytes.byteLength
+        for (var i = 0; i < len; i++) {
+          binary += String.fromCharCode(bytes[i])
+        }
+        return window.btoa(binary)
+      }
+
  getcase()
    .then((res) => {
      const arr = []
      console.log(res.data.result);
      res.data.result.forEach((item) => {
-    
+      // console.log("data:image/png;base64," + window.btoa(new Uint8Array(item.caseimage.data).reduce((res, byte) => res + String.fromCharCode(byte), '')));
+      console.log(item.caseimage);
          arr.push(item)
     
      })
@@ -85,7 +96,8 @@
  const cases1 = computed(() => {
    return cases.value.slice((currentPage.value - 1) * 6, currentPage.value * 6)
  })
- console.log(cases)
+ 
+ 
  const handleSizeChange = (val) => {
    console.log(`${val} items per page`)
  }

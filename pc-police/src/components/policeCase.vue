@@ -69,7 +69,7 @@ const handleAvatarSuccess = (
   uploadFile
 ) => {
   imageUrl.value = URL.createObjectURL(uploadFile.raw)
-  ruleForm.caseimage = uploadFile
+  ruleForm.caseimage = uploadFile.raw
 }
 
 
@@ -154,11 +154,13 @@ const submitForm = async (formEl) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log(ruleForm.caseimage.raw);
-      fileToBlob(ruleForm.caseimage.raw)
+      // console.log(ruleForm.caseimage.raw);
+      // fileToBlob(ruleForm.caseimage.raw)
       
-
-      // circulate(ruleForm).then()
+      
+      // ruleForm.caseimage = imageUrl.value
+      console.log(ruleForm.caseimage);
+      circulate(ruleForm).then()
     } else {
       console.log('error submit!', fields)
     }
