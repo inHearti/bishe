@@ -84,8 +84,12 @@ const arrayBufferToBase64 =(buffer)=> {
      const arr = []
      console.log(res.data.result);
      res.data.result.forEach((item) => {
-      // console.log("data:image/png;base64," + window.btoa(new Uint8Array(item.caseimage.data).reduce((res, byte) => res + String.fromCharCode(byte), '')));
+      console.log("data:image/png;base64," + window.btoa(new Uint8Array(item.caseimage.data).reduce((res, byte) => res + String.fromCharCode(byte), '')));
+      
       console.log(item.caseimage);
+      let blob = new Blob([item.caseimage])
+      console.log(blob);
+      item.caseimage = "data:image/png;base64," + window.btoa(new Uint8Array(item.caseimage.data).reduce((res, byte) => res + String.fromCharCode(byte), ''))
          arr.push(item)
     
      })

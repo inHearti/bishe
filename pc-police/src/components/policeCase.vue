@@ -68,8 +68,14 @@ const handleAvatarSuccess = (
   response,
   uploadFile
 ) => {
+  let reader = new FileReader();
+  reader.readAsDataURL(uploadFile.raw);
+
   imageUrl.value = URL.createObjectURL(uploadFile.raw)
-  ruleForm.caseimage = uploadFile.raw
+   reader.onload = function (e) {
+    ruleForm.caseimage =e.target.result
+    return e.target.result
+  }
 }
 
 
@@ -121,31 +127,32 @@ const rules = reactive({
 //       ia[i] = byteString.charCodeAt(i);
 //     }
 //     var blob = new Blob([ia], {type});
-    
+
 //     console.log(blob);
 //     let file = blobToFile(blob)
 //     console.log(file);
 //   };
- 
+
 // };
 
-const fileToBlob = (file)=>{
-	const type = file.type;
-	const reader = new FileReader();
-	reader.readAsDataURL(file)
-	reader.onload = function(e) {
-	    const blob = new Blob([e.target.result], {type});
-	    console.log("blob:", blob);
-	    const file1 = blobToFile(blob, 'fileName');
-         console.log('file', file1);
-         imageUrl1.value = URL.createObjectURL(file1)
-	};
+
+const fileToBlob = (file) => {
+  const type = file.type;
+  const reader = new FileReader();
+  reader.readAsDataURL(file)
+  reader.onload = function (e) {
+    const blob = new Blob([e.target.result], { type });
+    console.log("blob:", blob);
+    const file1 = blobToFile(blob, 'fileName');
+    console.log('file', file1);
+    imageUrl1.value = URL.createObjectURL(file1)
+  };
 }
 
 
 // Blob 转 File
-const blobToFile = (blob,fileName) => {
-  const file = new File([blob], fileName, {type: blob.type});
+const blobToFile = (blob, fileName) => {
+  const file = new File([blob], fileName, { type: blob.type });
   return file;
 }
 
@@ -156,8 +163,8 @@ const submitForm = async (formEl) => {
     if (valid) {
       // console.log(ruleForm.caseimage.raw);
       // fileToBlob(ruleForm.caseimage.raw)
-      
-      
+
+
       // ruleForm.caseimage = imageUrl.value
       console.log(ruleForm.caseimage);
       circulate(ruleForm).then()
