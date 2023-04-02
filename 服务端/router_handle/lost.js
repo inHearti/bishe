@@ -4,8 +4,8 @@ const db = require('../db/index')
 exports.add = (req, res) => {
     const info = req.body
     console.log(info);
-    const sqlStr = 'INSERT INTO lost_items SET ?'
-    db.query(sqlStr, (err, results) => {
+    const sqlStr = 'INSERT INTO lost_items  SET ?'
+    db.query(sqlStr, info, (err, results) => {
         if (err) {
             return res.cc(err.message)
         }
@@ -17,6 +17,17 @@ exports.add = (req, res) => {
     })
 
 }
+
+//获取物品信息
+exports.getlost = (req, res) => {
+    const sqlStr = 'select * from lost_items'
+    db.query(sqlStr, (err, results) => {
+        if (err) return res.cc(err)
+        if (results.length == 0) return res.cc('物品信息为空')
+        res.cc(results, 200)
+    })
+}
+
 
 //删除物品
 exports.del = (req, res) => {
