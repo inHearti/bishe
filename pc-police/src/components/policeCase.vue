@@ -28,9 +28,11 @@
       <el-form-item label="上传图片" prop="caseimage">
         <el-upload
           class="avatar-uploader"
-          action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+          action="http://127.0.0.1/lost/upload"
           :show-file-list="true"
           :on-success="handleAvatarSuccess"
+          :auto-upload="false"
+          ref="uploadRef"
         >
           <img v-if="imageUrl" :src="imageUrl" class="avatar" />
           <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
@@ -63,19 +65,17 @@ import { circulate } from '@/api/case'
 //上传图片
 const imageUrl = ref('')
 const imageUrl1 = ref('')
+// 用于控制图片上传
+const uploadRef = ref()
 
 const handleAvatarSuccess = (
   response,
   uploadFile
 ) => {
-  let reader = new FileReader();
-  reader.readAsDataURL(uploadFile.raw);
+
 
   imageUrl.value = URL.createObjectURL(uploadFile.raw)
-   reader.onload = function (e) {
-    ruleForm.caseimage =e.target.result
-    return e.target.result
-  }
+  ruleForm.caseimage = response.result
 }
 
 
@@ -166,8 +166,12 @@ const submitForm = async (formEl) => {
 
 
       // ruleForm.caseimage = imageUrl.value
-      console.log(ruleForm.caseimage);
-      circulate(ruleForm).then()
+      uploadRef.value.submit()
+      setTimeout(async () => {
+        await circulate(ruleForm)
+          .then((res) => { })
+          .catch((e) => { })
+      }, 100)
     } else {
       console.log('error submit!', fields)
     }

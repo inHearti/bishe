@@ -14,7 +14,7 @@
           <el-input v-model="formInline.place" placeholder="请输入地点" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">查询</el-button>
+          <el-button type="primary" @click="search">查询</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -65,7 +65,7 @@
           {{ more_clue.people }}
         </el-form-item>
         <el-form-item label="图片信息" :label-width="formLabelWidth">
-          <img src="../assets/github.png" alt="" />
+          <img :src="more_clue.image" alt="" />
         </el-form-item>
         <el-form-item label="描述信息" :label-width="formLabelWidth">
           {{ more_clue.message }}
@@ -139,16 +139,27 @@ getclue()
   })
   .catch((e) => { })
 
-const clues1 = computed(() => {
-  return clues.value.slice((currentPage.value - 1) * 6, currentPage.value * 6)
+  const clues1 = computed({
+  get:()=>{
+    return clues.value.slice((currentPage.value - 1) * 6, currentPage.value * 6)
+  },
+
+  set:(newvalue)=>{
+    clues.value = newvalue
+  }
 })
-console.log(clues1)
-const handleSizeChange = (val) => {
-  console.log(`${val} items per page`)
+
+//查询
+const search = ()=>{
+  const arr = []
+  clues.value.forEach((item)=>{
+    if(item.id == formInline.id || item.handle_place.indexOf(formInline.place) >= 0){  
+      arr.push(item)
+    }
+  })
+  clues1.value = arr
 }
-const handleCurrentChange = (val) => {
-  console.log(`current page: ${val}`)
-}
+
 </script>
 
 <style scoped lang="scss">

@@ -14,7 +14,7 @@
           <el-input v-model="formInline.place" placeholder="请输入地点" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">查询</el-button>
+          <el-button type="primary" @click="search">查询</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -82,38 +82,34 @@ const arrayBufferToBase64 = (buffer) => {
 getcase()
   .then((res) => {
     const arr = []
-    console.log(res.data.result)
     res.data.result.forEach((item) => {
-      console.log(
-        'data:image/png;base64,' +
-          window.btoa(
-            new Uint8Array(item.caseimage.data).reduce(
-              (res, byte) => res + String.fromCharCode(byte),
-              ''
-            )
-          )
-      )
-
-      console.log(item.caseimage)
-      let blob = new Blob([item.caseimage])
-      console.log(blob)
-      item.caseimage =
-        'data:image/png;base64,' +
-        window.btoa(
-          new Uint8Array(item.caseimage.data).reduce(
-            (res, byte) => res + String.fromCharCode(byte),
-            ''
-          )
-        )
       arr.push(item)
     })
     cases.value = arr
   })
   .catch((e) => {})
 
-const cases1 = computed(() => {
-  return cases.value.slice((currentPage.value - 1) * 6, currentPage.value * 6)
+
+const cases1 = computed({
+  get(){
+    return cases.value.slice((currentPage.value - 1) * 6, currentPage.value * 6)
+  },
+
+  set(newvalue){
+    cases.value = newvalue
+  }
 })
+
+//查询
+const search = ()=>{
+  const arr = []
+  cases.value.forEach((item)=>{
+    if(item.id == formInline.id || item.place.indexOf(formInline.place) >= 0){  
+      arr.push(item)
+    }
+  })
+  cases1.value = arr
+}
 
 const handleSizeChange = (val) => {
   console.log(`${val} items per page`)

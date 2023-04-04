@@ -14,7 +14,7 @@
         <el-input v-model="formInline.place" placeholder="请输入地点" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit" >查询</el-button>
+        <el-button type="primary" @click="search" >查询</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -69,7 +69,7 @@
           {{ more_clue.people }}
         </el-form-item>       
         <el-form-item label="图片信息" :label-width="formLabelWidth">
-          <img src="../assets/github.png" alt="">
+          <img :src="more_clue.image" alt="">
         </el-form-item>
         <el-form-item label="描述信息" :label-width="formLabelWidth">
           {{ more_clue.message }}
@@ -118,6 +118,7 @@ export default {
 
 <script setup>
 import { getclue, feedbackclue } from '@/api/clue'
+import { set } from 'lodash';
 import { computed, ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -225,9 +226,26 @@ getclue()
   })
   .catch((e) => {})
 
-const clues1 = computed(() => {
-  return clues.value.slice((currentPage.value - 1) * 6, currentPage.value * 6)
+const clues1 = computed({
+  get(){
+    return clues.value.slice((currentPage.value - 1) * 6, currentPage.value * 6)
+  },
+
+  set(newvalue){
+    clues1.value = newvalue
+  }
 })
+
+//查询
+const search = ()=>{
+  const arr = []
+  clues.value.forEach((item)=>{
+    if(item.id == formInline.id || item.place.indexOf(formInline.place) >= 0){  
+      arr.push(item)
+    }
+  })
+  clues1.value = arr
+}
 </script>
 
 <style scoped lang="scss">
