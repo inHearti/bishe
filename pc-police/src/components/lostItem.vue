@@ -65,7 +65,6 @@ import { Plus } from '@element-plus/icons-vue'
 const lostitem = ref([])
 getlost().then((res) => {
   lostitem.value = res.data.result
-  console.log(lostitem.value)
 })
 
 //上传图片

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
 -- Host: localhost    Database: bishe
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	8.0.29
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -85,11 +85,11 @@ DROP TABLE IF EXISTS `information`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `information` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `info_image` varchar(45) DEFAULT NULL,
+  `info_image` varchar(255) DEFAULT NULL,
   `info_title` varchar(45) DEFAULT NULL,
-  `info_link` varchar(45) DEFAULT NULL,
+  `info_link` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `information` (
 
 LOCK TABLES `information` WRITE;
 /*!40000 ALTER TABLE `information` DISABLE KEYS */;
-INSERT INTO `information` VALUES (1,NULL,'标题','https://github.com');
+INSERT INTO `information` VALUES (1,'http://127.0.0.1/upload/zixun1.jpg','警察节','https://mp.weixin.qq.com/s/WBxses9kvmTklDGZYWU53w'),(2,'http://127.0.0.1/upload/zixun1.jpg','警察节','https://mp.weixin.qq.com/s/WBxses9kvmTklDGZYWU53w'),(3,'http://127.0.0.1/upload/zixun2.jpg','安保动员','https://mp.weixin.qq.com/s/HaBkN8iftRO_ef8SMb5IDQ'),(4,'http://127.0.0.1/upload/zixun1.jpg','警察节','https://mp.weixin.qq.com/s/WBxses9kvmTklDGZYWU53w');
 /*!40000 ALTER TABLE `information` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-04 17:38:59
+-- Dump completed on 2023-04-05 19:58:53

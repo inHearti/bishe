@@ -35,7 +35,6 @@ export default {
 import { reactive, ref } from 'vue'
 import { getremind, warn } from '@/api/remind'
 
-
 const remind = ref([])
 
 getremind()
@@ -46,8 +45,7 @@ getremind()
     })
     remind.value = arr[0]
   })
-  .catch((e) => { })
-
+  .catch((e) => {})
 
 const formSize = ref('default')
 const ruleFormRef = ref()
@@ -56,12 +54,8 @@ const ruleForm = reactive({
 })
 
 const rules = reactive({
-  message: [
-    { required: true, message: '请输入案件描述', trigger: 'blur' },
-  ],
+  message: [{ required: true, message: '请输入案件描述', trigger: 'blur' }],
 })
-
-
 
 const submitForm = async (formEl) => {
   if (!formEl) return
@@ -70,20 +64,19 @@ const submitForm = async (formEl) => {
       warn(ruleForm).then()
       setTimeout(() => {
         getremind()
-        .then((res) => {
-          const arr = []
-          res.data.result.forEach((item) => {
-            arr.push(item)
+          .then((res) => {
+            const arr = []
+            res.data.result.forEach((item) => {
+              arr.push(item)
+            })
+            remind.value = arr[0]
           })
-          remind.value = arr[0]
-        })
-        .catch((e) => { })
+          .catch((e) => {})
       }, 10)
     } else {
       console.log('error submit!', fields)
     }
   })
-
 }
 
 const resetForm = (formEl) => {
