@@ -9,49 +9,29 @@
   />
   <div class="content">
     <van-card
+    v-for="(o, index) in cases"
+        :key="o"
       centered="false"
-      desc="XXXXXXXX"
-      title="张三"
-      thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
+      :desc="o.caseinfo"
+      :title="o.name"
+      :thumb="o.caseimage"
     >
-      <template #price> 2023-2-5 21:20 </template>
+      <template #price> {{o.case_time}} </template>
     </van-card>
-    <van-card
-      centered="false"
-      desc="XXXXXXXX"
-      title="张三"
-      thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
-    >
-      <template #price> 2023-2-5 21:20 </template>
-    </van-card>
-    <van-card
-      centered="false"
-      desc="XXXXXXXX"
-      title="张三"
-      thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
-    >
-      <template #price> 2023-2-5 21:20 </template>
-    </van-card>
-    <van-card
-      centered="false"
-      desc="XXXXXXXX"
-      title="张三"
-      thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
-    >
-      <template #price> 2023-2-5 21:20 </template>
-    </van-card>
-    <van-card
-      centered="false"
-      desc="XXXXXXXX"
-      title="张三"
-      thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
-    >
-      <template #price> 2023-2-5 21:20 </template>
-    </van-card>
+   
   </div>
 </template>
 
 <script setup>
+import { getcase } from '@/api/case'
+import { computed, ref, reactive } from 'vue'
+
+const cases = ref([])
+getcase()
+  .then((res) => {
+    cases.value = res.data.result
+  })
+  .catch((e) => {})
 //返回
 const onClickLeft = () => history.back();
 

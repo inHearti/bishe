@@ -8,89 +8,27 @@
   placeholder="true"
 />
   <van-grid :border="false" :column-num="3">
-  <van-grid-item>
+  <van-grid-item
+  v-for="(o, index) in lostitem"
+        :key="o">
     <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
+    :src="o.image"
     />
-    xxx
+    {{o.name}}
   </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
-    />
-    xxx
-  </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg"
-    />
-    xxx
-  </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
-    />
-    xxx
-  </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
-    />
-    xxx
-  </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg"
-    />
-    xxx
-  </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
-    />
-    xxx
-  </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
-    />
-    xxx
-  </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg"
-    />
-    xxx
-  </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
-    />
-    xxx
-  </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
-    />
-    xxx
-  </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg"
-    />
-    xxx
-  </van-grid-item>
-  <van-grid-item>
-    <van-image
-      src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg"
-    />
-    xxx
-  </van-grid-item>
+ 
 </van-grid>
 
 </template>
 
 <script setup>
+import {  getlost } from '@/api/lost'
+import { ref, reactive } from 'vue'
+
+const lostitem = ref([])
+getlost().then((res) => {
+  lostitem.value = res.data.result
+})
 //返回
 const onClickLeft = () => history.back();
 

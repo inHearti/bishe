@@ -28,6 +28,7 @@
             :span="4"
             :xs="8"
             class="quick-entrance-items"
+            @click="go(card.link)"
           >
             <div class="quick-entrance-item">
               <div class="quick-entrance-item-icon" :style="{ backgroundColor: card.bg }">
@@ -51,6 +52,13 @@ export default {
 <script setup>
 import { ref } from 'vue';
 import {  Setting} from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const go =(path)=>{
+  router.push(path)
+}
 
 const toolCards= ref([
 {
@@ -58,41 +66,47 @@ const toolCards= ref([
           icon: 'Avatar',
           name: 'about',
           color: '#5cdbd3',
-          bg: 'rgba(92, 219, 211,.3)'
+          bg: 'rgba(92, 219, 211,.3)',
+          link:'/information'
         },
         {
           label: '反馈线索',
           icon: 'monitor',
           name: 'user',
           color: '#ff9c6e',
-          bg: 'rgba(255, 156, 110,.3)'
+          bg: 'rgba(255, 156, 110,.3)',
+          link:'/cluefalse'
         },
         {
           label: '警情通报',
           icon: 'setting',
           name: 'authority',
           color: '#69c0ff',
-          bg: 'rgba(105, 192, 255,.3)'
+          bg: 'rgba(105, 192, 255,.3)',
+          link:'/policeCase'
         },
         {
           label: '案件总览',
           icon: 'menu',
           name: 'menu',
           color: '#b37feb',
-          bg: 'rgba(179, 127, 235,.3)'
+          bg: 'rgba(179, 127, 235,.3)',
+          link:'/caselist'
         }, {
           label: '失物招领',
           icon: 'cpu',
           name: 'autoCode',
           color: '#ffd666',
-          bg: 'rgba(255, 214, 102,.3)'
+          bg: 'rgba(255, 214, 102,.3)',
+          link:'/lostitem'
         },
         {
           label: '积分管理',
           icon: 'document-checked',
           name: 'formCreate',
           color: '#ff85c0',
-          bg: 'rgba(255, 133, 192,.3)'
+          bg: 'rgba(255, 133, 192,.3)',
+          link:'/integral'
         },
       
 

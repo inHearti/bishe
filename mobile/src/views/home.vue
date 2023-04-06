@@ -1,9 +1,5 @@
 <template>
-    <van-nav-bar
-  title="平安武清"
-  fixed="true"
-  placeholder="true"
-/>
+  <van-nav-bar title="平安武清" fixed="true" placeholder="true" />
 
   <div class="content2">
     <!-- nav  -->
@@ -42,11 +38,9 @@
           @swiper="onSwiper"
           @slideChange="onSlideChange"
         >
-          <swiper-slide><img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg" alt="" /></swiper-slide>
-          <swiper-slide><img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg" alt="" /></swiper-slide>
-          <swiper-slide><img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg" alt="" /></swiper-slide>
-          <swiper-slide><img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg" alt="" /></swiper-slide>
-          <swiper-slide><img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg" alt="" /></swiper-slide>
+          <swiper-slide v-for="(o, index) in lostitem" :key="o"
+            ><img :src="o.image" alt=""
+          /></swiper-slide>
         </swiper>
       </div>
     </section>
@@ -57,9 +51,8 @@
       <div class="info_hd">
         <h4>
           <img src="../assets/i2.png" alt="" />
-          咨询
+          资讯
         </h4>
-        <div>更多>></div>
       </div>
       <div class="info_bd">
         <swiper
@@ -69,22 +62,13 @@
           @swiper="onSwiper"
           @slideChange="onSlideChange"
         >
-          <swiper-slide>
-            <a href="">
-              <img src="../assets/img2.png" alt="" />
-              <h5>资讯信息</h5>
+          <swiper-slide
+          v-for="(o, index) in info" :key="o">
+            <a :href="o.info_link">
+              <img :src="o.info_image" alt="" />
+              <h5>{{o.info_title}}</h5>
             </a>
           </swiper-slide>
-          <swiper-slide>
-            <a href="">
-              <img src="../assets/img2.png" alt="" />
-              <h5>资讯信息</h5>
-            </a>
-          </swiper-slide>
-          <swiper-slide>1</swiper-slide>
-          <swiper-slide>1</swiper-slide>
-          <swiper-slide>1</swiper-slide>
-          <swiper-slide>1</swiper-slide>
         </swiper>
       </div>
     </section>
@@ -101,7 +85,10 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 // Import Swiper styles
 import 'swiper/scss';
 import 'swiper/scss/navigation';
+import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router';
+import { getlost } from '@/api/lost'
+import { getinfo } from '@/api/information'
 
 const router = useRouter()
 
@@ -112,6 +99,20 @@ export default {
     SwiperSlide,
   },
   setup() {
+
+    //获取失物招领物品信息
+    const lostitem = ref([])
+    getlost().then((res) => {
+      lostitem.value = res.data.result.slice(0, 5)
+    })
+    //获取资讯信息
+    const info = ref([])
+    getinfo().then((res) => {
+      info.value = res.data.result
+    })
+
+
+
     const router = useRouter()
     const onSwiper = (swiper) => {
       console.log(swiper);
@@ -131,8 +132,10 @@ export default {
     const gocluelist = () => {
       router.push('/cluelist')
     }
-    
+
     return {
+      info,
+      lostitem,
       onSwiper,
       onSlideChange,
       goreport,
@@ -146,8 +149,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
 .content2 {
   background-color: #eaeaea;
   nav {

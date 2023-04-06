@@ -9,12 +9,14 @@
   />
   <div class="content">
     <van-card
+    v-for="(o, index) in clues"
+        :key="o"
       centered="false"
-      desc="XXXXXXXX"
-      title="标题"
-      thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
+      :desc="o.message"
+      :title="o.place"
+      :thumb="o.image"
     >
-      <template #price> 2023-2-5 21:20 </template>
+      <template #price> {{o.time}} </template>
       <template #footer>
     <van-button size="mini">提供新线索</van-button>
   </template>
@@ -24,6 +26,21 @@
 </template>
 
 <script setup>
+import { getclue } from '@/api/clue'
+import { computed, ref, reactive } from 'vue'
+
+const clues = ref([])
+getclue()
+  .then((res) => {
+    const arr = []
+    res.data.result.forEach((item) => {
+      if (item.status == 0) {
+        arr.push(item)
+      }
+    })
+    clues.value = arr
+  })
+  .catch((e) => {})
 //返回
 const onClickLeft = () => history.back();
 
