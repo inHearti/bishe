@@ -1,6 +1,30 @@
 <template>
-  <van-nav-bar title="平安武清" fixed="true" placeholder="true" />
-
+  <van-nav-bar title="平安武清" fixed="true" placeholder="true">
+    <template #right>
+     
+      <span v-show="islogin" @click="gologin">去登录</span>
+      
+        <van-image
+        round
+        width="0.8rem"
+        height="0.8rem"
+        src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+        v-show="!islogin"
+      />
+      <van-popover
+        v-model:show="showPopover"
+        :actions="actions"
+        @select="onSelect"
+        v-show="!islogin"
+        
+      >
+        <template #reference>
+          <span v-show="!islogin">个人信息</span>
+        </template>
+      </van-popover>
+      
+    </template>
+  </van-nav-bar>
   <div class="content2">
     <!-- nav  -->
     <nav>
@@ -62,11 +86,10 @@
           @swiper="onSwiper"
           @slideChange="onSlideChange"
         >
-          <swiper-slide
-          v-for="(o, index) in info" :key="o">
+          <swiper-slide v-for="(o, index) in info" :key="o">
             <a :href="o.info_link">
               <img :src="o.info_image" alt="" />
-              <h5>{{o.info_title}}</h5>
+              <h5>{{ o.info_title }}</h5>
             </a>
           </swiper-slide>
         </swiper>
@@ -89,7 +112,7 @@ import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router';
 import { getlost } from '@/api/lost'
 import { getinfo } from '@/api/information'
-
+import { showToast } from 'vant';
 const router = useRouter()
 
 // Import Swiper styles
@@ -99,6 +122,20 @@ export default {
     SwiperSlide,
   },
   setup() {
+    const islogin = ref(window.localStorage.getItem('user') == null ? true : false)
+    const showPopover = ref(false);
+
+    // 通过 actions 属性来定义菜单选项
+    const actions = [
+      { text: '个人信息' },
+      { text: '退出登录' },
+    ];
+    const onSelect = (action) => {
+      if(action.text == '退出登录'){
+        localStorage.removeItem('user')
+        islogin.value = true
+      }
+    }
 
     //获取失物招领物品信息
     const lostitem = ref([])
@@ -113,12 +150,11 @@ export default {
 
 
 
+
     const router = useRouter()
     const onSwiper = (swiper) => {
-      console.log(swiper);
     };
     const onSlideChange = () => {
-      console.log('slide change');
     };
     const goreport = () => {
       router.push('/report')
@@ -132,8 +168,16 @@ export default {
     const gocluelist = () => {
       router.push('/cluelist')
     }
+    const gologin = () => {
+      router.push('/login')
+    }
+    
 
     return {
+      islogin,
+      showPopover,
+      actions,
+      onSelect,
       info,
       lostitem,
       onSwiper,
@@ -142,13 +186,25 @@ export default {
       golostitem,
       gocaselist,
       gocluelist,
+      gologin,
       modules: [Navigation, A11y],
     };
   },
 };
 </script>
 
+
 <style lang="scss" scoped>
+::v-deep .van-nav-bar__title{
+  margin: 0 50px;
+  font-size: 20px;
+}
+::v-deep .van-nav-bar__right {
+  padding-right: 35px;
+  span{
+    padding-left: 5px;
+  }
+}
 .content2 {
   background-color: #eaeaea;
   nav {

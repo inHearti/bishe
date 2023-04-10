@@ -1,10 +1,10 @@
 <template>
   <van-nav-bar
-  title="举报"
-  left-text="返回"
-  left-arrow
-  @click-left="onClickLeft"
-/>
+    title="举报"
+    left-text="返回"
+    left-arrow
+    @click-left="onClickLeft"
+  />
   <van-form @failed="onFailed">
     <van-cell-group inset>
       <van-field
@@ -62,7 +62,7 @@
 
       <van-field name="uploader" label="上传照片">
         <template #input>
-          <van-uploader v-model="form.image" />
+          <van-uploader v-model="images" :after-read="afterRead" />
         </template>
       </van-field>
 
@@ -74,7 +74,13 @@
       />
     </van-cell-group>
     <div style="margin: 30px">
-      <van-button round block type="primary" native-type="submit" @click="submit">
+      <van-button
+        round
+        block
+        type="primary"
+        native-type="submit"
+        @click="submit"
+      >
         举报
       </van-button>
     </div>
@@ -84,17 +90,19 @@
 <script setup>
 import { reactive, ref } from 'vue';
 import { areaList } from '@vant/area-data';
-import {report} from '@/api/clue'
+import axios from "axios";
+import { report } from '@/api/clue'
 
 //返回
 const onClickLeft = () => history.back();
 
+let images =ref([])
 //表单数据
 const form = reactive({
   time: '',
   place: '',
   message: '',
-  image: [],
+  image: '',
   people: ''
 })
 
@@ -120,8 +128,19 @@ const onConfirm1 = ({ selectedOptions }) => {
   form.place = selectedOptions.map((item) => item.text).join('/');
 };
 
+const afterRead = (file) => {
+  var formvant = new FormData()
+  formvant.append('avatar', file.file)
+  // 此时可以自行将文件上传至服务器
 
-const submit = ()=>{
+  axios.post("/upload", form)
+    .then((res) => {
+      form.image = res.result
+    });
+  console.log(file);
+};
+
+const submit = () => {
   // report(form.value).then()
   console.log(form.image)
 }

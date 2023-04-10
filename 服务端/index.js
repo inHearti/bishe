@@ -6,7 +6,7 @@ app.use(express.json());
 var bodyParser = require('body-parser');
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-
+const fs = require("fs");
 
 // Multer 是一个 node.js 中间件，用于处理 multipart/form-data 类型的表单数据，它主要用于上传文件。
 const multer = require("multer");
@@ -61,6 +61,25 @@ app.use('/lost', lostrouter)
 
 const inforouter = require('./router/information')
 app.use('/info', inforouter)
+
+app.post('/upload', (req, res) => {
+    let oldName = req.files[0].filename;//获取名字
+    let originalname = req.files[0].originalname;//originnalname其实就是你上传时候文件起的名字
+    //给新名字加上原来的后缀
+    let newName = req.files[0].originalname;
+    //改图片的名字
+    fs.renameSync('./public/upload/' + oldName, './public/upload/' + newName);
+    // // 这段insert操作可有可无
+    // const sql = 'insert into ima set ? '
+    // // 为什么返回的图片少了/pubilc?因为是静态托管
+    // db.query(sql, { image: `http://127.0.0.1:3007/upload/${newName}` }, (err, result) => {
+    //     if (err) {
+    //         return res.send(err)
+    //     }
+    // 上传成功
+    res.cc("http://127.0.0.1/upload/" + newName, 0);
+    // })
+})
 
 app.listen(80, () => {
     console.log('127.0.0.1');

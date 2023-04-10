@@ -33,7 +33,7 @@
       <el-form-item label="上传图片" prop="info_image">
         <el-upload
           class="avatar-uploader"
-          action="http://127.0.0.1/lost/upload"
+          action="http://127.0.0.1/upload"
           :show-file-list="true"
           :on-success="handleAvatarSuccess"
           :auto-upload="false"

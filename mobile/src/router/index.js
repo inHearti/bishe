@@ -6,6 +6,7 @@ import Report from '@/components/report.vue'
 import lostitem from '@/components/lostitems.vue'
 import caselist from '@/components/caselist.vue'
 import cluelist from '@/components/cluelist.vue'
+import login from '@/components/login.vue'
 
 const routes = [
   {
@@ -39,6 +40,12 @@ const routes = [
     path: '/cluelist',
     name: 'cluelist',
     component: cluelist,
+  }
+  ,
+  {
+    path: '/login',
+    name: 'login',
+    component: login,
   }
 ]
 

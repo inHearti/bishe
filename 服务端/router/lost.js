@@ -1,7 +1,7 @@
 const express = require('express')
 const lostrouter = express.Router()
 const router_handle = require('../router_handle/lost')
-fs = require("fs");
+
 
 // //导入上传文件中间件，能帮助我们实现接收文件的接口
 // const multer = require('multer')
@@ -55,24 +55,6 @@ lostrouter.post('/add', router_handle.add)
 lostrouter.delete('/del', router_handle.del)
 lostrouter.get('/get', router_handle.getlost)
 
-lostrouter.post('/upload', (req, res) => {
-    let oldName = req.files[0].filename;//获取名字
-    let originalname = req.files[0].originalname;//originnalname其实就是你上传时候文件起的名字
-    //给新名字加上原来的后缀
-    let newName = req.files[0].originalname;
-    //改图片的名字
-    fs.renameSync('./public/upload/' + oldName, './public/upload/' + newName);
-    // // 这段insert操作可有可无
-    // const sql = 'insert into ima set ? '
-    // // 为什么返回的图片少了/pubilc?因为是静态托管
-    // db.query(sql, { image: `http://127.0.0.1:3007/upload/${newName}` }, (err, result) => {
-    //     if (err) {
-    //         return res.send(err)
-    //     }
-    // 上传成功
-    res.cc("http://127.0.0.1/upload/" + newName, 0);
-    // })
-})
 
 
 module.exports = lostrouter
