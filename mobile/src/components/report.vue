@@ -62,7 +62,7 @@
 
       <van-field name="uploader" label="上传照片">
         <template #input>
-          <van-uploader v-model="images" :after-read="afterRead" />
+          <van-uploader v-model="images" accept="file" :after-read="afterRead" multiple />
         </template>
       </van-field>
 
@@ -96,7 +96,7 @@ import { report } from '@/api/clue'
 //返回
 const onClickLeft = () => history.back();
 
-let images =ref([])
+let images = ref([])
 //表单数据
 const form = reactive({
   time: '',
@@ -129,20 +129,19 @@ const onConfirm1 = ({ selectedOptions }) => {
 };
 
 const afterRead = (file) => {
+  console.log(file);
   var formvant = new FormData()
   formvant.append('avatar', file.file)
   // 此时可以自行将文件上传至服务器
 
-  axios.post("/upload", form)
+  axios.post("http://127.0.0.1/upload", formvant, { headers: { 'Content-Type': "multipart/form-data" } })
     .then((res) => {
-      form.image = res.result
+      form.image = res.data.result
     });
-  console.log(file);
 };
 
 const submit = () => {
-  // report(form.value).then()
-  console.log(form.image)
+  report(form).then()
 }
 
 </script>

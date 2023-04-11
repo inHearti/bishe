@@ -63,6 +63,10 @@ const inforouter = require('./router/information')
 app.use('/info', inforouter)
 
 app.post('/upload', (req, res) => {
+    // console.log(req.files);
+    // res.header('Access-Control-Allow-Origin', '*');
+	// res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+	// res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
     let oldName = req.files[0].filename;//获取名字
     let originalname = req.files[0].originalname;//originnalname其实就是你上传时候文件起的名字
     //给新名字加上原来的后缀

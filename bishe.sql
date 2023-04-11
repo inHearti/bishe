@@ -36,7 +36,7 @@ CREATE TABLE `clue` (
   `handle_time` varchar(45) DEFAULT NULL,
   `handle_place` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `clue` (
 
 LOCK TABLES `clue` WRITE;
 /*!40000 ALTER TABLE `clue` DISABLE KEYS */;
-INSERT INTO `clue` VALUES (1,'2023/2/9','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','测试',1,1,'15713031122','无新消息','2023-03-05 17:09:38','武清东蒲洼派出所'),(4,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123',1,1,'15713031122','无新消息','2023-03-05 17:16:10','武清东蒲洼派出所'),(5,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123222',1,1,'15713031122','无新消息','2023-03-05 17:33:31','武清东蒲洼派出所'),(6,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123',0,1,'15713031122','无新消息','2023-03-05 17:16:10','武清东蒲洼派出所'),(7,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123777',1,1,'15713031122','无新消息','2023-03-05 17:47:08','武清东蒲洼派出所'),(8,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123999',1,1,'15713031122','无新消息','2023-03-05 17:47:08','武清东蒲洼派出所'),(9,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','1236',1,1,'15713031122','无新消息','2023-03-05 17:57:47','武清东蒲洼派出所');
+INSERT INTO `clue` VALUES (1,'2023/2/9','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','测试',1,1,'15713031122','无新消息','2023-03-05 17:09:38','武清东蒲洼派出所'),(4,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123',1,1,'15713031122','无新消息','2023-03-05 17:16:10','武清东蒲洼派出所'),(5,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123222',1,1,'15713031122','无新消息','2023-03-05 17:33:31','武清东蒲洼派出所'),(6,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123',0,1,'15713031122','无新消息','2023-03-05 17:16:10','武清东蒲洼派出所'),(7,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123777',1,1,'15713031122','无新消息','2023-03-05 17:47:08','武清东蒲洼派出所'),(8,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123999',1,1,'15713031122','无新消息','2023-03-05 17:47:08','武清东蒲洼派出所'),(9,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','1236',1,1,'15713031122','无新消息','2023-03-05 17:57:47','武清东蒲洼派出所'),(17,'2023-01-01 12:00','北京市/北京市/东城区','xxxx','http://127.0.0.1/upload/qiangjie.jpg','null',0,NULL,'15713031122',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `clue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +115,7 @@ CREATE TABLE `lost_items` (
   `describe` varchar(45) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +124,7 @@ CREATE TABLE `lost_items` (
 
 LOCK TABLES `lost_items` WRITE;
 /*!40000 ALTER TABLE `lost_items` DISABLE KEYS */;
-INSERT INTO `lost_items` VALUES (6,'123','123','http://127.0.0.1/upload/img3.jpg'),(7,'123','123','http://127.0.0.1/upload/img3.jpg'),(8,'111','111','http://127.0.0.1/upload/icon1.png'),(9,'333','333','http://127.0.0.1/upload/img2.png'),(10,'123','xxx','http://127.0.0.1/upload/icon2.png');
+INSERT INTO `lost_items` VALUES (6,'123','123','http://127.0.0.1/upload/img3.jpg'),(7,'123','123','http://127.0.0.1/upload/img3.jpg'),(8,'111','111','http://127.0.0.1/upload/icon1.png'),(9,'333','333','http://127.0.0.1/upload/img2.png'),(10,'123','xxx','http://127.0.0.1/upload/icon2.png'),(11,'222','xxxxx','http://127.0.0.1/upload/icon1.png');
 /*!40000 ALTER TABLE `lost_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-06 17:19:03
+-- Dump completed on 2023-04-11 17:36:06

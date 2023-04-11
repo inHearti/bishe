@@ -3,7 +3,6 @@ const db = require('../db/index')
 //添加物品
 exports.add = (req, res) => {
     const info = req.body
-    console.log(info);
     const sqlStr = 'INSERT INTO lost_items  SET ?'
     db.query(sqlStr, info, (err, results) => {
         if (err) {
