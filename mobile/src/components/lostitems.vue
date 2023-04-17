@@ -38,4 +38,13 @@ const onClickLeft = () => history.back();
 .van-grid{
   padding: 20px;
 }
+
+::v-deep .van-grid-item__content{
+  font-size: 15px;
+}
+
+::v-deep .van-image__img{
+  width: 100px;
+  height: 100px;
+}
 </style>
