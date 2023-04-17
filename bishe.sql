@@ -124,7 +124,7 @@ CREATE TABLE `lost_items` (
 
 LOCK TABLES `lost_items` WRITE;
 /*!40000 ALTER TABLE `lost_items` DISABLE KEYS */;
-INSERT INTO `lost_items` VALUES (6,'123','123','http://127.0.0.1/upload/img3.jpg'),(7,'123','123','http://127.0.0.1/upload/img3.jpg'),(8,'111','111','http://127.0.0.1/upload/icon1.png'),(9,'333','333','http://127.0.0.1/upload/img2.png'),(10,'123','xxx','http://127.0.0.1/upload/icon2.png'),(11,'222','xxxxx','http://127.0.0.1/upload/icon1.png');
+INSERT INTO `lost_items` VALUES (6,'钱包','123','http://127.0.0.1/upload/img3.jpeg'),(7,'钱包','123','http://127.0.0.1/upload/img3.jpeg'),(8,'钱包','111','http://127.0.0.1/upload/icon1.jpeg'),(9,'手机','333','http://127.0.0.1/upload/img2.jpeg'),(10,'手机','xxx','http://127.0.0.1/upload/icon2.png'),(11,'钱包','xxxxx','http://127.0.0.1/upload/icon1.jpeg');
 /*!40000 ALTER TABLE `lost_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-11 17:36:06
+-- Dump completed on 2023-04-17 17:16:51
