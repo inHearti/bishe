@@ -8,7 +8,7 @@
         round
         width="0.8rem"
         height="0.8rem"
-        src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+        src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
         v-show="!islogin"
       />
       <van-popover
@@ -326,7 +326,7 @@ export default {
         h5 {
           padding: 0 0.076rem;
           font-weight: 400;
-          font-size: 0.4rem;
+          font-size: 0.3rem;
           font-family: MicrosoftYaHei;
           color: #333;
         }

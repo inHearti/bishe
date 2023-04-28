@@ -45,7 +45,7 @@ CREATE TABLE `clue` (
 
 LOCK TABLES `clue` WRITE;
 /*!40000 ALTER TABLE `clue` DISABLE KEYS */;
-INSERT INTO `clue` VALUES (1,'2023/2/9','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','测试',1,1,'15713031122','无新消息','2023-03-05 17:09:38','武清东蒲洼派出所'),(4,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123',1,1,'15713031122','无新消息','2023-03-05 17:16:10','武清东蒲洼派出所'),(5,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123222',1,1,'15713031122','无新消息','2023-03-05 17:33:31','武清东蒲洼派出所'),(6,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123',0,1,'15713031122','无新消息','2023-03-05 17:16:10','武清东蒲洼派出所'),(7,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123777',1,1,'15713031122','无新消息','2023-03-05 17:47:08','武清东蒲洼派出所'),(8,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123999',1,1,'15713031122','无新消息','2023-03-05 17:47:08','武清东蒲洼派出所'),(9,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','1236',1,1,'15713031122','无新消息','2023-03-05 17:57:47','武清东蒲洼派出所'),(17,'2023-01-01 12:00','北京市/北京市/东城区','xxxx','http://127.0.0.1/upload/qiangjie.jpg','null',0,NULL,'15713031122',NULL,NULL,NULL);
+INSERT INTO `clue` VALUES (1,'2023/2/9','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','测试',1,1,'15713031122','无新消息','2023-03-05 17:09:38','武清东蒲洼派出所'),(6,'2023/2/2','武清区天津天狮学院新校区12-330','王某疑似有盗窃行为','http://127.0.0.1/upload/clue.jpg','123',0,1,'15713031122','无新消息','2023-03-05 17:16:10','武清东蒲洼派出所'),(7,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123777',1,1,'15713031122','无新消息','2023-03-05 17:47:08','武清东蒲洼派出所');
 /*!40000 ALTER TABLE `clue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `information` (
 
 LOCK TABLES `information` WRITE;
 /*!40000 ALTER TABLE `information` DISABLE KEYS */;
-INSERT INTO `information` VALUES (1,'http://127.0.0.1/upload/zixun1.jpg','警察节','https://mp.weixin.qq.com/s/WBxses9kvmTklDGZYWU53w'),(2,'http://127.0.0.1/upload/zixun1.jpg','警察节','https://mp.weixin.qq.com/s/WBxses9kvmTklDGZYWU53w'),(3,'http://127.0.0.1/upload/zixun2.jpg','安保动员','https://mp.weixin.qq.com/s/HaBkN8iftRO_ef8SMb5IDQ'),(4,'http://127.0.0.1/upload/zixun1.jpg','警察节','https://mp.weixin.qq.com/s/WBxses9kvmTklDGZYWU53w');
+INSERT INTO `information` VALUES (1,'http://127.0.0.1/upload/èµè®¯123.jpg','习近平当选军委主席','http://www.gov.cn/zhuanti/2023qglh/index.htm'),(2,'http://127.0.0.1/upload/f7d3ff0d23564f789af56e5321caab4a.jpg','2023全国两会巡礼','http://www.gov.cn/zhuanti/2023qglh/index.htm'),(3,'http://127.0.0.1/upload/zixun2.jpg','安保动员','https://mp.weixin.qq.com/s/HaBkN8iftRO_ef8SMb5IDQ'),(4,'http://127.0.0.1/upload/zixun1.jpg','警察节','https://mp.weixin.qq.com/s/WBxses9kvmTklDGZYWU53w');
 /*!40000 ALTER TABLE `information` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +124,7 @@ CREATE TABLE `lost_items` (
 
 LOCK TABLES `lost_items` WRITE;
 /*!40000 ALTER TABLE `lost_items` DISABLE KEYS */;
-INSERT INTO `lost_items` VALUES (6,'钱包','123','http://127.0.0.1/upload/img3.jpeg'),(7,'钱包','123','http://127.0.0.1/upload/img3.jpeg'),(8,'钱包','111','http://127.0.0.1/upload/icon1.jpeg'),(9,'手机','333','http://127.0.0.1/upload/img2.jpeg'),(10,'手机','xxx','http://127.0.0.1/upload/icon2.png'),(11,'钱包','xxxxx','http://127.0.0.1/upload/icon1.jpeg');
+INSERT INTO `lost_items` VALUES (6,'钱包','123','http://127.0.0.1/upload/img3.jpeg'),(9,'手机','333','http://127.0.0.1/upload/img2.jpeg'),(10,'手机','xxx','http://127.0.0.1/upload/icon2.png'),(11,'钱包','xxxxx','http://127.0.0.1/upload/icon1.jpeg');
 /*!40000 ALTER TABLE `lost_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-17 17:16:51
+-- Dump completed on 2023-04-28 17:56:18
