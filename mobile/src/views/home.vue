@@ -1,10 +1,9 @@
 <template>
   <van-nav-bar title="平安武清" fixed="true" placeholder="true">
     <template #right>
-     
       <span v-show="islogin" @click="gologin">去登录</span>
-      
-        <van-image
+
+      <van-image
         round
         width="0.8rem"
         height="0.8rem"
@@ -16,15 +15,14 @@
         :actions="actions"
         @select="onSelect"
         v-show="!islogin"
-        
       >
         <template #reference>
-          <span v-show="!islogin">个人信息</span>
+          <span v-show="!islogin">{{ username }}</span>
         </template>
       </van-popover>
-      
     </template>
   </van-nav-bar>
+  <van-notice-bar mode="closeable">{{remind.message}}</van-notice-bar>
   <div class="content2">
     <!-- nav  -->
     <nav>
@@ -108,10 +106,11 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 // Import Swiper styles
 import 'swiper/scss';
 import 'swiper/scss/navigation';
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router';
 import { getlost } from '@/api/lost'
 import { getinfo } from '@/api/information'
+import { getremind } from '@/api/remind'
 import { showToast } from 'vant';
 const router = useRouter()
 
@@ -124,18 +123,29 @@ export default {
   setup() {
     const islogin = ref(window.localStorage.getItem('user') == null ? true : false)
     const showPopover = ref(false);
-
+    const username = ref(JSON.parse(localStorage.getItem('user')).name)
     // 通过 actions 属性来定义菜单选项
     const actions = [
       { text: '个人信息' },
       { text: '退出登录' },
     ];
     const onSelect = (action) => {
-      if(action.text == '退出登录'){
+      if (action.text == '退出登录') {
         localStorage.removeItem('user')
         islogin.value = true
       }
     }
+
+    const remind = ref([])
+    getremind()
+      .then((res) => {
+        const arr = []
+        res.data.result.forEach((item) => {
+          arr.push(item)
+        })
+        remind.value = arr[0]
+      })
+      .catch((e) => { })
 
     //获取失物招领物品信息
     const lostitem = ref([])
@@ -171,9 +181,11 @@ export default {
     const gologin = () => {
       router.push('/login')
     }
-    
+
 
     return {
+      remind,
+      username,
       islogin,
       showPopover,
       actions,
@@ -195,13 +207,13 @@ export default {
 
 
 <style lang="scss" scoped>
-::v-deep .van-nav-bar__title{
+::v-deep .van-nav-bar__title {
   margin: 0 50px;
   font-size: 20px;
 }
 ::v-deep .van-nav-bar__right {
   padding-right: 35px;
-  span{
+  span {
     padding-left: 5px;
   }
 }

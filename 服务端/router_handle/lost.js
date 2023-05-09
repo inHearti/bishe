@@ -30,7 +30,7 @@ exports.getlost = (req, res) => {
 
 //删除物品
 exports.del = (req, res) => {
-    const info = req.query
+    const info = req.body
     const sqlStr = 'DELETE from lost_items WHERE id = ?'
     db.query(sqlStr, info.id, (err, results) => {
         if (err) {

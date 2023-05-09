@@ -10,3 +10,7 @@ export const getlost = () => {
   return request('/lost/get', 'get')
 }
 
+//删除物品
+export const dellost = (form) => {
+  return request('/lost/del', 'delete', form)
+}

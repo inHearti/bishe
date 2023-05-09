@@ -10,3 +10,8 @@ export const report = (form) => {
 export const getclue = () => {
   return request('/clue/getclue', 'get')
 }
+
+//提供线索
+export const provideclue = (form) => {
+  return request('/clue/provideclue', 'put',form)
+}

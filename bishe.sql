@@ -36,7 +36,7 @@ CREATE TABLE `clue` (
   `handle_time` varchar(45) DEFAULT NULL,
   `handle_place` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `clue` (
 
 LOCK TABLES `clue` WRITE;
 /*!40000 ALTER TABLE `clue` DISABLE KEYS */;
-INSERT INTO `clue` VALUES (1,'2023/2/9','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','测试',1,1,'15713031122','无新消息','2023-03-05 17:09:38','武清东蒲洼派出所'),(6,'2023/2/2','武清区天津天狮学院新校区12-330','王某疑似有盗窃行为','http://127.0.0.1/upload/clue.jpg','123',0,1,'15713031122','无新消息','2023-03-05 17:16:10','武清东蒲洼派出所'),(7,'2023/2/2','武清区天津天狮学院新校区12-330','描述信息','http://127.0.0.1/upload/clue.jpg','123777',1,1,'15713031122','无新消息','2023-03-05 17:47:08','武清东蒲洼派出所');
+INSERT INTO `clue` VALUES (6,'2023/2/2','武清区天津天狮学院新校区12-330','王某疑似有盗窃行为','http://127.0.0.1/upload/clue.jpg','经调查王某确实进行盗窃',1,1,'15713031122','无新消息','2023-03-05 17:16:10','武清东蒲洼派出所'),(18,'2023-01-01 12:00','天津市/天津市/武清区','抢劫;嫌疑人身穿黑色外套','http://127.0.0.1/upload/qiangjie.jpg','null',0,NULL,'15713031122',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `clue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,7 +72,7 @@ CREATE TABLE `common_users` (
 
 LOCK TABLES `common_users` WRITE;
 /*!40000 ALTER TABLE `common_users` DISABLE KEYS */;
-INSERT INTO `common_users` VALUES (1,'张三','15713031122','123456','5');
+INSERT INTO `common_users` VALUES (1,'张三','15713031122','123456','7');
 /*!40000 ALTER TABLE `common_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +124,7 @@ CREATE TABLE `lost_items` (
 
 LOCK TABLES `lost_items` WRITE;
 /*!40000 ALTER TABLE `lost_items` DISABLE KEYS */;
-INSERT INTO `lost_items` VALUES (6,'钱包','123','http://127.0.0.1/upload/img3.jpeg'),(9,'手机','333','http://127.0.0.1/upload/img2.jpeg'),(10,'手机','xxx','http://127.0.0.1/upload/icon2.png'),(11,'钱包','xxxxx','http://127.0.0.1/upload/icon1.jpeg');
+INSERT INTO `lost_items` VALUES (6,'钱包','123','http://127.0.0.1/upload/img3.jpeg'),(9,'手机','333','http://127.0.0.1/upload/img2.jpeg');
 /*!40000 ALTER TABLE `lost_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +152,7 @@ CREATE TABLE `police_case` (
 
 LOCK TABLES `police_case` WRITE;
 /*!40000 ALTER TABLE `police_case` DISABLE KEYS */;
-INSERT INTO `police_case` VALUES (1,'张三','2023-2-5 12::30','天津天狮学院','xxxx','http://127.0.0.1/upload/img2.png'),(2,'李四','2023-04-04 4:28 pm','12-330','123','http://127.0.0.1/upload/çº¿ç´¢å¾ç2.jpg');
+INSERT INTO `police_case` VALUES (1,'张三','2023-2-5 12::30','天津天狮学院','xxxx','http://127.0.0.1/upload/clue.jpg'),(2,'李四','2023-04-04 4:28 pm','12-330','123','http://127.0.0.1/upload/çº¿ç´¢å¾ç2.jpg');
 /*!40000 ALTER TABLE `police_case` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-28 17:56:18
+-- Dump completed on 2023-05-09 17:22:07

@@ -18,7 +18,7 @@
             <span>{{ o.name }}</span>
             <div class="bottom">
               <time class="time">{{ currentDate }}</time>
-              <el-button text class="button">认领</el-button>
+              <el-button text class="button" @click="dellostitem(o)">认领</el-button>
             </div>
           </div>
         </el-card>
@@ -58,7 +58,7 @@
 </template>
 
 <script setup>
-import { addlost, getlost } from '@/api/lost'
+import { addlost, getlost, dellost } from '@/api/lost'
 import { ref, reactive } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
 
@@ -94,9 +94,18 @@ const submit = () => {
   uploadRef.value.submit()
   setTimeout(async () => {
     await addlost(form)
-      .then((res) => {})
-      .catch((e) => {})
+      .then((res) => { })
+      .catch((e) => { })
   }, 100)
+}
+
+const dellostitem = async (delform) => {
+  await dellost(delform).then((res) => { 
+    getlost().then((res) => {
+  lostitem.value = res.data.result
+})
+  })
+    .catch((e) => { })
 }
 
 const currentDate = ref(new Date())
@@ -109,10 +118,10 @@ const currentDate = ref(new Date())
   .add {
     padding-left: 30px;
   }
-  .el-row {
-    justify-content: space-around;
-  }
+ 
   .el-col {
+    flex: 25%;
+    height: 345px;
     margin: 10px;
   }
 }
@@ -136,6 +145,7 @@ const currentDate = ref(new Date())
 
 .image {
   width: 100%;
+  height: 250px;
   display: block;
 }
 </style>

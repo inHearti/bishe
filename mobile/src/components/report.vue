@@ -103,7 +103,8 @@ const form = reactive({
   place: '',
   message: '',
   image: '',
-  people: ''
+  people: '',
+  id: JSON.parse(localStorage.getItem('user')).id
 })
 
 //时间选择
