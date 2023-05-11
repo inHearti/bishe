@@ -15,3 +15,8 @@ export const register = (form) => {
 export const getcommoninfo = () => {
   return request('/user/getcommoninfo', 'get')
 }
+
+//修改积分
+export const changeintegral = (form) => {
+  return request('/user/changeintegral', 'put',form)
+}

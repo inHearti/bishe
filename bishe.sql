@@ -63,7 +63,7 @@ CREATE TABLE `common_users` (
   `password` varchar(45) DEFAULT NULL,
   `integral` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `common_users` (
 
 LOCK TABLES `common_users` WRITE;
 /*!40000 ALTER TABLE `common_users` DISABLE KEYS */;
-INSERT INTO `common_users` VALUES (1,'张三','15713031122','123456','7');
+INSERT INTO `common_users` VALUES (1,'张三','15713031133','123456','7'),(4,'丁真','15713031122','!??!oooo','3');
 /*!40000 ALTER TABLE `common_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +115,7 @@ CREATE TABLE `lost_items` (
   `describe` varchar(45) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +124,7 @@ CREATE TABLE `lost_items` (
 
 LOCK TABLES `lost_items` WRITE;
 /*!40000 ALTER TABLE `lost_items` DISABLE KEYS */;
-INSERT INTO `lost_items` VALUES (6,'钱包','123','http://127.0.0.1/upload/img3.jpeg'),(9,'手机','333','http://127.0.0.1/upload/img2.jpeg');
+INSERT INTO `lost_items` VALUES (6,'钱包','123','http://127.0.0.1/upload/img3.jpeg'),(9,'手机','333','http://127.0.0.1/upload/img2.jpeg'),(12,'钥匙','一串钥匙','http://127.0.0.1/upload/yichuanyuechi_4542586.jpg');
 /*!40000 ALTER TABLE `lost_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-09 17:22:07
+-- Dump completed on 2023-05-11 15:21:10

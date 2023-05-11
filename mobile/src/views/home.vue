@@ -123,10 +123,10 @@ export default {
   setup() {
     const islogin = ref(window.localStorage.getItem('user') == null ? true : false)
     const showPopover = ref(false);
-    const username = ref(JSON.parse(localStorage.getItem('user')).name)
+    const username = ref(window.localStorage.getItem('user') == null ? '' : JSON.parse(localStorage.getItem('user')).name)
     // 通过 actions 属性来定义菜单选项
     const actions = [
-      { text: '个人信息' },
+      { text: `积分：${JSON.parse(localStorage.getItem('user')).integral}` },
       { text: '退出登录' },
     ];
     const onSelect = (action) => {

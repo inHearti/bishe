@@ -15,3 +15,4 @@ export const register = (form) => {
 export const getcommoninfo = () => {
   return request('/user/getcommoninfo', 'get')
 }
+

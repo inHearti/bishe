@@ -24,7 +24,6 @@
     <el-table-column prop="time" label="时间" width="180" />
     <el-table-column prop="place" label="地点" />
     <el-table-column prop="people" label="举报人手机号" />
-    <el-table-column prop="status_2" label="状态" width="180" />
     <el-table-column fixed="right" label="操作" width="180">
       <template #default="scope">
         <el-button link type="primary" size="small" @click="moreinfo(scope.row.id)"

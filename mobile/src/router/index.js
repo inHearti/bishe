@@ -7,6 +7,7 @@ import lostitem from '@/components/lostitems.vue'
 import caselist from '@/components/caselist.vue'
 import cluelist from '@/components/cluelist.vue'
 import login from '@/components/login.vue'
+import register from '@/components/register.vue'
 
 const routes = [
   {
@@ -46,6 +47,12 @@ const routes = [
     path: '/login',
     name: 'login',
     component: login,
+  }
+  ,
+  {
+    path: '/register',
+    name: 'register',
+    component: register,
   }
 ]
 

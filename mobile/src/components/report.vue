@@ -104,7 +104,7 @@ const form = reactive({
   message: '',
   image: '',
   people: '',
-  id: JSON.parse(localStorage.getItem('user')).id
+  id: localStorage.getItem('user') == null ? '' : JSON.parse(localStorage.getItem('user')).id
 })
 
 //时间选择

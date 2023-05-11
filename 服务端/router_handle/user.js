@@ -96,3 +96,21 @@ exports.login_yh = (req, res) => {
             res.cc(results[0], 200)
     })
 }
+
+
+//修改用户积分
+exports.changeintegral = (req, res) => {
+    const info = req.body
+    const sqlStr = 'UPDATE common_users set integral = ?  WHERE id = ?'
+    db.query(sqlStr, [info.integral ,info.id], (err, results) => {
+        if (err) {
+            //执行sql语句失败
+            return res.cc(err)
+        }
+        if (results.affectedRows !== 1) {
+            return res.cc('反馈失败！')
+        }
+        res.cc('修改成功', 200)
+    })
+  
+  }
